@@ -1,21 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A plain HTML, CSS, and JavaScript starter project.">
-  <link rel="icon" href="data:,">
-  <title>Git Photos</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <main class="card">
-    <p class="eyebrow">Plain HTML · CSS · JavaScript</p>
-    <h1>Git Photos</h1>
-    <p>Your imported project is running on Replit and ready to build.</p>
-    <button id="welcomeButton" type="button">Test JavaScript</button>
-    <p id="status" class="status" aria-live="polite"></p>
-  </main>
-  <script src="script.js"></script>
+    <div class="container">
+        <h1>Nature Gallery</h1>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/mountain1.jpg" alt="Mountain Landscape 1">
+            </div>
+            <div class="gallery-item">
+                <img src="images/mountain2.jpg" alt="Mountain Landscape 2">
+            </div>
+            <div class="gallery-item">
+                <img src="images/mountain3.jpg" alt="Mountain Landscape 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/ocean1.jpg" alt="Ocean View 1">
+            </div>
+            <div class="gallery-item">
+                <img src="images/ocean2.jpg" alt="Ocean View 2">
+            </div>
+            <div class="gallery-item">
+                <img src="images/ocean3.jpg" alt="Ocean View 3">
+            </div>
+            <div class="gallery-item">
+                <img src="images/mountain4.jpg" alt="Mountain Landscape 4">
+            </div>
+            <div class="gallery-item">
+                <img src="images/ocean4.jpg" alt="Ocean View 4">
+            </div>
+            <div class="gallery-item">
+                <img src="images/mountain5.jpg" alt="Mountain Landscape 5">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
