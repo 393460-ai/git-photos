@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEON GALLERY | CYBERPUNK 2077</title>
+    <title>V'S NEON GALLERY | CYBERPUNK 2077</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,9 +12,10 @@
             --neon-purple: #d300c5;
             --neon-yellow: #f9f002;
             --neon-green: #01ff70;
-            --dark-bg: #0d0221;
+            --neon-orange: #ff6b35;
+            --dark-bg: #0a040a;
             --darker-bg: #05010d;
-            --card-bg: rgba(13, 2, 33, 0.8);
+            --card-bg: rgba(10, 4, 10, 0.9);
             --text-primary: #ffffff;
             --text-secondary: #b8b8b8;
         }
@@ -33,6 +34,7 @@
             min-height: 100vh;
         }
 
+        /* Dual V Background - Steam Inspired */
         body::before {
             content: '';
             position: fixed;
@@ -41,14 +43,15 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(ellipse at 20% 80%, rgba(255, 42, 109, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(5, 217, 232, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(211, 0, 197, 0.1) 0%, transparent 70%);
+                radial-gradient(ellipse at 25% 30%, rgba(255, 107, 53, 0.12) 0%, transparent 30%),
+                radial-gradient(ellipse at 75% 70%, rgba(255, 42, 109, 0.12) 0%, transparent 30%),
+                radial-gradient(ellipse at 50% 50%, rgba(5, 217, 232, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 42, 109, 0.05) 50%, rgba(5, 217, 232, 0.03) 100%);
             pointer-events: none;
             z-index: -1;
         }
 
-        /* Scanlines effect */
+        /* Enhanced Scanlines - More Subtle */
         body::after {
             content: '';
             position: fixed;
@@ -58,14 +61,14 @@
             bottom: 0;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(0, 0, 0, 0.1) 0px,
-                rgba(0, 0, 0, 0.1) 1px,
+                rgba(5, 217, 232, 0.03) 0px,
+                rgba(5, 217, 232, 0.03) 1px,
                 transparent 1px,
                 transparent 2px
             );
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.3;
+            opacity: 0.5;
             animation: scanlines 0.1s linear infinite;
         }
 
@@ -74,10 +77,10 @@
             100% { background-position: 0 4px; }
         }
 
-        /* Glitch effect for logo */
+        /* V Logo Glitch Effect - Enhanced */
         .glitch {
             position: relative;
-            animation: glitch-skew 4s infinite linear alternate-reverse;
+            animation: glitch-skew 3s infinite linear alternate-reverse;
         }
 
         .glitch::before,
@@ -91,74 +94,72 @@
         }
 
         .glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--neon-pink);
+            left: 3px;
+            text-shadow: -3px 0 var(--neon-yellow);
             clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
+            animation: glitch-anim 4s infinite linear alternate-reverse;
         }
 
         .glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 var(--neon-blue);
+            left: -3px;
+            text-shadow: 3px 0 var(--neon-pink);
             clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
+            animation: glitch-anim2 4s infinite linear alternate-reverse;
         }
 
         @keyframes glitch-anim {
-            0% { clip: rect(31px, 9999px, 94px, 0); transform: skew(0.5deg); }
-            5% { clip: rect(70px, 9999px, 71px, 0); transform: skew(0.5deg); }
-            10% { clip: rect(29px, 9999px, 24px, 0); transform: skew(0.5deg); }
-            15% { clip: rect(69px, 9999px, 34px, 0); transform: skew(0.5deg); }
-            20% { clip: rect(21px, 9999px, 86px, 0); transform: skew(0.5deg); }
-            25% { clip: rect(78px, 9999px, 39px, 0); transform: skew(0.5deg); }
-            30% { clip: rect(5px, 9999px, 14px, 0); transform: skew(0.5deg); }
-            35% { clip: rect(47px, 9999px, 95px, 0); transform: skew(0.5deg); }
-            40% { clip: rect(82px, 9999px, 64px, 0); transform: skew(0.5deg); }
-            45% { clip: rect(31px, 9999px, 47px, 0); transform: skew(0.5deg); }
-            50% { clip: rect(24px, 9999px, 94px, 0); transform: skew(0.5deg); }
-            55% { clip: rect(67px, 9999px, 12px, 0); transform: skew(0.5deg); }
-            60% { clip: rect(1px, 9999px, 72px, 0); transform: skew(0.5deg); }
-            65% { clip: rect(35px, 9999px, 91px, 0); transform: skew(0.5deg); }
-            70% { clip: rect(45px, 9999px, 8px, 0); transform: skew(0.5deg); }
-            75% { clip: rect(52px, 9999px, 67px, 0); transform: skew(0.5deg); }
-            80% { clip: rect(89px, 9999px, 43px, 0); transform: skew(0.5deg); }
-            85% { clip: rect(16px, 9999px, 77px, 0); transform: skew(0.5deg); }
-            90% { clip: rect(61px, 9999px, 25px, 0); transform: skew(0.5deg); }
-            95% { clip: rect(3px, 9999px, 58px, 0); transform: skew(0.5deg); }
-            100% { clip: rect(73px, 9999px, 36px, 0); transform: skew(0.5deg); }
+            0% { clip: rect(31px, 9999px, 94px, 0); transform: skew(0.8deg); }
+            5% { clip: rect(70px, 9999px, 71px, 0); transform: skew(0.8deg); }
+            10% { clip: rect(29px, 9999px, 24px, 0); transform: skew(0.8deg); }
+            15% { clip: rect(69px, 9999px, 34px, 0); transform: skew(0.8deg); }
+            20% { clip: rect(21px, 9999px, 86px, 0); transform: skew(0.8deg); }
+            25% { clip: rect(78px, 9999px, 39px, 0); transform: skew(0.8deg); }
+            30% { clip: rect(5px, 9999px, 14px, 0); transform: skew(0.8deg); }
+            35% { clip: rect(47px, 9999px, 95px, 0); transform: skew(0.8deg); }
+            40% { clip: rect(82px, 9999px, 64px, 0); transform: skew(0.8deg); }
+            45% { clip: rect(31px, 9999px, 47px, 0); transform: skew(0.8deg); }
+            50% { clip: rect(24px, 9999px, 94px, 0); transform: skew(0.8deg); }
+            55% { clip: rect(67px, 9999px, 12px, 0); transform: skew(0.8deg); }
+            60% { clip: rect(1px, 9999px, 72px, 0); transform: skew(0.8deg); }
+            65% { clip: rect(35px, 9999px, 91px, 0); transform: skew(0.8deg); }
+            70% { clip: rect(45px, 9999px, 8px, 0); transform: skew(0.8deg); }
+            75% { clip: rect(52px, 9999px, 67px, 0); transform: skew(0.8deg); }
+            80% { clip: rect(89px, 9999px, 43px, 0); transform: skew(0.8deg); }
+            85% { clip: rect(16px, 9999px, 77px, 0); transform: skew(0.8deg); }
+            90% { clip: rect(61px, 9999px, 25px, 0); transform: skew(0.8deg); }
+            95% { clip: rect(3px, 9999px, 58px, 0); transform: skew(0.8deg); }
+            100% { clip: rect(73px, 9999px, 36px, 0); transform: skew(0.8deg); }
         }
 
         @keyframes glitch-anim2 {
-            0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(-0.5deg); }
-            5% { clip: rect(52px, 9999px, 74px, 0); transform: skew(-0.5deg); }
-            10% { clip: rect(79px, 9999px, 85px, 0); transform: skew(-0.5deg); }
-            15% { clip: rect(75px, 9999px, 5px, 0); transform: skew(-0.5deg); }
-            20% { clip: rect(67px, 9999px, 61px, 0); transform: skew(-0.5deg); }
-            25% { clip: rect(14px, 9999px, 79px, 0); transform: skew(-0.5deg); }
-            30% { clip: rect(1px, 9999px, 66px, 0); transform: skew(-0.5deg); }
-            35% { clip: rect(86px, 9999px, 30px, 0); transform: skew(-0.5deg); }
-            40% { clip: rect(23px, 9999px, 98px, 0); transform: skew(-0.5deg); }
-            45% { clip: rect(85px, 9999px, 72px, 0); transform: skew(-0.5deg); }
-            50% { clip: rect(71px, 9999px, 75px, 0); transform: skew(-0.5deg); }
-            55% { clip: rect(2px, 9999px, 48px, 0); transform: skew(-0.5deg); }
-            60% { clip: rect(30px, 9999px, 16px, 0); transform: skew(-0.5deg); }
-            65% { clip: rect(59px, 9999px, 50px, 0); transform: skew(-0.5deg); }
-            70% { clip: rect(41px, 9999px, 62px, 0); transform: skew(-0.5deg); }
-            75% { clip: rect(2px, 9999px, 82px, 0); transform: skew(-0.5deg); }
-            80% { clip: rect(47px, 9999px, 73px, 0); transform: skew(-0.5deg); }
-            85% { clip: rect(3px, 9999px, 27px, 0); transform: skew(-0.5deg); }
-            90% { clip: rect(26px, 9999px, 55px, 0); transform: skew(-0.5deg); }
-            95% { clip: rect(42px, 9999px, 97px, 0); transform: skew(-0.5deg); }
-            100% { clip: rect(38px, 9999px, 49px, 0); transform: skew(-0.5deg); }
+            0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(-0.8deg); }
+            5% { clip: rect(52px, 9999px, 74px, 0); transform: skew(-0.8deg); }
+            10% { clip: rect(79px, 9999px, 85px, 0); transform: skew(-0.8deg); }
+            15% { clip: rect(75px, 9999px, 5px, 0); transform: skew(-0.8deg); }
+            20% { clip: rect(67px, 9999px, 61px, 0); transform: skew(-0.8deg); }
+            25% { clip: rect(14px, 9999px, 79px, 0); transform: skew(-0.8deg); }
+            30% { clip: rect(1px, 9999px, 66px, 0); transform: skew(-0.8deg); }
+            35% { clip: rect(86px, 9999px, 30px, 0); transform: skew(-0.8deg); }
+            40% { clip: rect(23px, 9999px, 98px, 0); transform: skew(-0.8deg); }
+            45% { clip: rect(85px, 9999px, 72px, 0); transform: skew(-0.8deg); }
+            50% { clip: rect(71px, 9999px, 75px, 0); transform: skew(-0.8deg); }
+            55% { clip: rect(2px, 9999px, 48px, 0); transform: skew(-0.8deg); }
+            60% { clip: rect(30px, 9999px, 16px, 0); transform: skew(-0.8deg); }
+            65% { clip: rect(59px, 9999px, 50px, 0); transform: skew(-0.8deg); }
+            70% { clip: rect(41px, 9999px, 62px, 0); transform: skew(-0.8deg); }
+            75% { clip: rect(2px, 9999px, 82px, 0); transform: skew(-0.8deg); }
+            80% { clip: rect(47px, 9999px, 73px, 0); transform: skew(-0.8deg); }
+            85% { clip: rect(3px, 9999px, 27px, 0); transform: skew(-0.8deg); }
+            90% { clip: rect(26px, 9999px, 55px, 0); transform: skew(-0.8deg); }
+            95% { clip: rect(42px, 9999px, 97px, 0); transform: skew(-0.8deg); }
+            100% { clip: rect(38px, 9999px, 49px, 0); transform: skew(-0.8deg); }
         }
 
         @keyframes glitch-skew {
-            0% { transform: skew(0deg); }
-            20% { transform: skew(0deg); }
-            21% { transform: skew(1deg); }
-            22% { transform: skew(-1deg); }
-            23% { transform: skew(0deg); }
-            100% { transform: skew(0deg); }
+            0%, 19%, 21%, 23%, 25%, 100% { transform: skew(0deg); }
+            20% { transform: skew(2deg); }
+            22% { transform: skew(-2deg); }
+            24% { transform: skew(1.5deg); }
         }
 
         .container {
@@ -167,67 +168,82 @@
             padding: 20px;
         }
 
-        /* Header with Logo */
+        /* Header with V Logo */
         header {
             text-align: center;
             padding: 40px 20px 20px;
             position: relative;
+            z-index: 100;
         }
 
         .logo {
             font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 900;
-            color: var(--neon-pink);
+            color: var(--neon-yellow);
             text-shadow: 
-                0 0 10px var(--neon-pink),
-                0 0 20px var(--neon-pink),
-                0 0 40px var(--neon-pink),
-                0 0 80px var(--neon-blue);
+                0 0 10px var(--neon-yellow),
+                0 0 20px var(--neon-yellow),
+                0 0 30px var(--neon-orange),
+                0 0 40px var(--neon-orange);
             letter-spacing: 8px;
             margin-bottom: 10px;
-            animation: neon-pulse 2s ease-in-out infinite alternate;
+            animation: neon-pulse 1.5s ease-in-out infinite alternate, color-shift 8s ease infinite;
         }
 
         @keyframes neon-pulse {
             from {
                 text-shadow: 
-                    0 0 10px var(--neon-pink),
-                    0 0 20px var(--neon-pink),
-                    0 0 40px var(--neon-pink);
+                    0 0 10px var(--neon-yellow),
+                    0 0 20px var(--neon-yellow);
             }
             to {
                 text-shadow: 
-                    0 0 20px var(--neon-pink),
-                    0 0 40px var(--neon-pink),
-                    0 0 60px var(--neon-pink),
-                    0 0 100px var(--neon-blue);
+                    0 0 20px var(--neon-yellow),
+                    0 0 40px var(--neon-yellow),
+                    0 0 60px var(--neon-orange),
+                    0 0 80px var(--neon-orange);
             }
+        }
+
+        @keyframes color-shift {
+            0%, 25% { color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-orange); }
+            26%, 50% { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-purple); }
+            51%, 75% { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-pink); }
+            76%, 100% { color: var(--neon-orange); text-shadow: 0 0 20px var(--neon-orange), 0 0 40px var(--neon-yellow); }
         }
 
         .tagline {
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--neon-blue);
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             text-transform: uppercase;
             margin-bottom: 20px;
+            animation: flicker 3s infinite;
         }
 
-        /* Cyberpunk Navigation */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            52% { opacity: 1; }
+            54% { opacity: 0.9; }
+        }
+
+        /* Cyberpunk Navigation - V Style */
         nav {
             position: sticky;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(5, 1, 13, 0.9);
+            background: rgba(10, 4, 10, 0.95);
             backdrop-filter: blur(20px);
             padding: 15px 20px;
             box-shadow: 
-                0 0 20px rgba(255, 42, 109, 0.3),
-                inset 0 0 20px rgba(5, 217, 232, 0.1);
+                0 0 30px rgba(255, 107, 53, 0.3),
+                inset 0 0 30px rgba(255, 42, 109, 0.1);
             z-index: 1000;
-            border-bottom: 1px solid rgba(5, 217, 232, 0.3);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.3);
         }
 
         nav ul {
@@ -248,10 +264,11 @@
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: 1px solid transparent;
             transition: all 0.3s ease;
             position: relative;
+            background: rgba(255, 107, 53, 0.05);
         }
 
         nav a::before {
@@ -261,49 +278,62 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: var(--neon-blue);
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink));
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
 
         nav a:hover {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px var(--neon-blue);
-            border-color: var(--neon-blue);
+            color: var(--neon-yellow);
+            text-shadow: 0 0 15px var(--neon-yellow);
+            border-color: var(--neon-orange);
+            background: rgba(255, 107, 53, 0.1);
         }
 
         nav a:hover::before {
             width: 100%;
-            box-shadow: 0 0 10px var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-orange);
         }
 
         nav a:hover::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            top: 2px;
+            left: 2px;
+            right: -2px;
+            bottom: -2px;
             border: 1px solid var(--neon-pink);
             border-radius: 2px;
-            animation: border-flicker 0.3s infinite;
+            animation: border-flicker 0.2s infinite;
+            z-index: -1;
         }
 
         @keyframes border-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.02); }
         }
 
         h1 {
             text-align: center;
             margin: 40px 0 30px;
-            color: var(--neon-purple);
+            color: var(--neon-orange);
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             text-shadow: 
-                0 0 10px var(--neon-purple),
-                0 0 20px var(--neon-purple);
-            letter-spacing: 4px;
+                0 0 10px var(--neon-orange),
+                0 0 20px var(--neon-orange),
+                0 0 30px var(--neon-pink);
+            letter-spacing: 5px;
+            animation: title-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes title-glow {
+            0%, 100% { 
+                text-shadow: 0 0 10px var(--neon-orange), 0 0 20px var(--neon-orange), 0 0 30px var(--neon-pink);
+            }
+            50% { 
+                text-shadow: 0 0 15px var(--neon-orange), 0 0 30px var(--neon-orange), 0 0 45px var(--neon-pink);
+            }
         }
 
         /* Gallery Grid */
@@ -318,10 +348,10 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 
-                0 0 20px rgba(5, 217, 232, 0.2),
-                inset 0 0 20px rgba(5, 217, 232, 0.05);
+                0 0 20px rgba(255, 107, 53, 0.15),
+                inset 0 0 20px rgba(255, 42, 109, 0.05);
             transition: all 0.5s ease;
-            border: 1px solid rgba(5, 217, 232, 0.2);
+            border: 1px solid rgba(255, 107, 53, 0.2);
             position: relative;
         }
 
@@ -331,29 +361,30 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            background-size: 400% 400%;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px) scale(1.02);
+            transform: translateY(-12px) scale(1.03);
             box-shadow: 
-                0 15px 40px rgba(255, 42, 109, 0.4),
-                0 0 40px rgba(5, 217, 232, 0.3),
-                inset 0 0 30px rgba(5, 217, 232, 0.1);
-            border-color: var(--neon-pink);
+                0 20px 50px rgba(255, 107, 53, 0.4),
+                0 0 50px rgba(255, 42, 109, 0.3),
+                inset 0 0 30px rgba(255, 42, 109, 0.1);
+            border-color: var(--neon-orange);
         }
 
         .gallery-item:hover::before {
             opacity: 1;
-            animation: neon-border 2s linear infinite;
+            animation: neon-border 3s linear infinite;
         }
 
         @keyframes neon-border {
             0% { background-position: 0% 50%; }
-            100% { background-position: 200% 50%; }
+            100% { background-position: 400% 50%; }
         }
 
         .gallery-item img {
@@ -361,26 +392,27 @@
             height: 250px;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
-            filter: brightness(1.1) contrast(1.2);
+            transition: all 0.5s ease;
+            filter: brightness(1.1) contrast(1.2) saturate(1.1);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
-            filter: brightness(1.3) contrast(1.4) saturate(1.2);
+            transform: scale(1.15);
+            filter: brightness(1.3) contrast(1.4) saturate(1.3) hue-rotate(5deg);
         }
 
         .gallery-item h3 {
-            padding: 15px;
+            padding: 18px;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--neon-blue);
             font-family: 'Orbitron', sans-serif;
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             position: relative;
+            transition: all 0.3s ease;
         }
 
         .gallery-item h3::after {
@@ -388,28 +420,33 @@
             position: absolute;
             bottom: 0;
             left: 50%;
-            width: 50%;
-            height: 2px;
-            background: var(--neon-pink);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink));
             transform: translateX(-50%);
-            transition: width 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover h3 {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px var(--neon-yellow);
         }
 
         .gallery-item:hover h3::after {
-            width: 80%;
-            box-shadow: 0 0 10px var(--neon-pink);
+            width: 90%;
+            box-shadow: 0 0 15px var(--neon-orange);
         }
 
         /* Section Styling */
         .section {
             margin-top: 50px;
-            padding: 40px;
+            padding: 45px;
             background: var(--card-bg);
             border-radius: 8px;
             box-shadow: 
-                0 0 20px rgba(5, 217, 232, 0.2),
-                inset 0 0 20px rgba(5, 217, 232, 0.05);
-            border: 1px solid rgba(5, 217, 232, 0.2);
+                0 0 25px rgba(255, 107, 53, 0.15),
+                inset 0 0 25px rgba(255, 42, 109, 0.05);
+            border: 1px solid rgba(255, 107, 53, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -420,27 +457,27 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue), var(--neon-purple), var(--neon-yellow));
+            height: 5px;
+            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink), var(--neon-blue), var(--neon-purple), var(--neon-yellow));
             background-size: 400% 400%;
-            animation: gradient 5s ease infinite;
+            animation: gradient 6s ease infinite;
         }
 
         @keyframes gradient {
             0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            50% { background-position: 200% 50%; }
             100% { background-position: 0% 50%; }
         }
 
         .section h2 {
-            color: var(--neon-pink);
+            color: var(--neon-orange);
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px var(--neon-pink);
-            letter-spacing: 3px;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px var(--neon-orange);
+            letter-spacing: 4px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
 
         .section h2::after {
@@ -448,22 +485,22 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            box-shadow: 0 0 15px var(--neon-pink);
         }
 
         .section p {
             color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            line-height: 1.9;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
         }
 
         /* Cyberpunk scrollbar */
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 12px;
         }
 
         ::-webkit-scrollbar-track {
@@ -471,16 +508,16 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--neon-purple);
-            border-radius: 5px;
+            background: linear-gradient(180deg, var(--neon-orange), var(--neon-pink));
+            border-radius: 6px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: var(--neon-pink);
-            box-shadow: 0 0 10px var(--neon-pink);
+            background: linear-gradient(180deg, var(--neon-pink), var(--neon-orange));
+            box-shadow: 0 0 20px var(--neon-pink);
         }
 
-        /* Floating particles effect */
+        /* Floating particles effect - Orange and Pink */
         .particles {
             position: fixed;
             top: 0;
@@ -494,12 +531,12 @@
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--neon-blue);
+            width: 6px;
+            height: 6px;
+            background: var(--neon-orange);
             border-radius: 50%;
             opacity: 0.6;
-            animation: float 15s infinite ease-in-out;
+            animation: float 20s infinite ease-in-out;
         }
 
         @keyframes float {
@@ -508,15 +545,30 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.6;
+                opacity: 0.8;
             }
             90% {
-                opacity: 0.6;
+                opacity: 0.8;
             }
             100% {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-100vh) translateX(150px);
                 opacity: 0;
             }
+        }
+
+        /* V Background Pattern */
+        .v-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -2;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.03) 0%, transparent 10%),
+                radial-gradient(circle at 80% 80%, rgba(255, 42, 109, 0.03) 0%, transparent 10%),
+                radial-gradient(circle at 50% 50%, rgba(5, 217, 232, 0.02) 0%, transparent 15%);
         }
 
         /* Responsive */
@@ -528,16 +580,19 @@
 
         @media (max-width: 768px) {
             nav ul {
-                gap: 20px;
+                gap: 15px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
             nav a {
                 font-size: 0.8rem;
-                padding: 8px 15px;
+                padding: 10px 15px;
             }
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .logo {
+                font-size: 3.5rem;
             }
         }
 
@@ -551,25 +606,35 @@
             .tagline {
                 font-size: 0.9rem;
             }
+            h1 {
+                font-size: 2rem;
+            }
         }
 
         /* Loading animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         body {
-            animation: fadeIn 1s ease-out;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: var(--neon-orange);
+            color: var(--dark-bg);
         }
     </style>
 </head>
 <body>
+    <div class="v-pattern"></div>
     <div class="particles" id="particles"></div>
     
     <header>
-        <div class="glitch" data-text="NEON GALLERY">NEON GALLERY</div>
-        <div class="tagline">CYBERPUNK 2077 THEME</div>
+        <div class="glitch" data-text="V'S GALLERY">V'S GALLERY</div>
+        <div class="tagline">NIGHT CITY NEON</div>
     </header>
 
     <nav>
@@ -577,17 +642,17 @@
             <li><a href="#top">HOME</a></li>
             <li><a href="#gallery">GALLERY</a></li>
             <li><a href="#about">ABOUT</a></li>
-            <li><a href="#biography">BIOGRAPHY</a></li>
+            <li><a href="#biography">V'S STORY</a></li>
         </ul>
     </nav>
 
     <div class="container" id="top">
-        <h1>NEON VISIONS</h1>
+        <h1>NEON DREAMS</h1>
         
         <div class="gallery" id="gallery">
             <div class="gallery-item">
-                <img src="https://a-z-animals.com/media/animals/images/original/amur_leopard.jpg" alt="Amur Leopard">
-                <h3>Amur Leopard</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM8Flh-39ADr24ky0dJDZ_XsWuX5-_sA4ToxmJPkDy4Iy6BglT5H_40fl6&s=10" alt="V">
+                <h3>V</h3>
             </div>
             <div class="gallery-item">
                 <img src="images/mountain2.png" alt="Mountain Landscape 2">
@@ -645,43 +710,46 @@
 
         <div class="section" id="about">
             <h2>ABOUT</h2>
-            <p>Welcome to our NEON GALLERY, a cyberpunk-inspired showcase featuring stunning mountain and ocean landscapes, majestic wildlife, and digital art. Immerse yourself in the neon-lit world of visual excellence.</p>
+            <p>Welcome to V'S NEON GALLERY, a cyberpunk-inspired showcase featuring stunning mountain and ocean landscapes, majestic wildlife, and digital art. Immerse yourself in the neon-lit world of Night City's visual excellence.</p>
         </div>
 
         <div class="section" id="biography">
-            <h2>BIOGRAPHY: PRESIDENT ABRAHAM LINCOLN</h2>
-            <p>Abraham Lincoln (February 12, 1809 - April 15, 1865) was the 16th President of the United States, serving from March 1861 until his assassination in April 1865. Lincoln led the United States through the American Civil War, its bloodiest war and its greatest moral, constitutional, and political crisis. In doing so, he preserved the Union, abolished slavery, strengthened the federal government, and modernized the U.S. economy.</p>
-            <p>Born in a log cabin in Kentucky, Lincoln was self-educated and became a country lawyer before entering politics. He served as a Whig Party leader, Illinois state legislator, and member of the U.S. House of Representatives before becoming the 16th President. His Gettysburg Address became an iconic symbol of American nationalism, and his Emancipation Proclamation paved the way for the abolition of slavery.</p>
-            <p>Lincoln's leadership during the Civil War and his efforts to preserve the Union while ending slavery have made him one of the most respected and admired figures in American history. His legacy continues to inspire generations with his commitment to equality, democracy, and the principles of freedom.</p>
+            <h2>V'S STORY</h2>
+            <p>V is the protagonist of Cyberpunk 2077, a customizable character whose background, appearance, and life path are defined by the player. Born and raised in Night City, V navigates the dangerous world of corporate espionage, cybernetic enhancements, and street-level survival.</p>
+            <p>V's journey begins with a quest for the ultimate cyberware implant - the Relic, which contains the digital consciousness of the legendary rockerboy Johnny Silverhand. As V becomes entangled with Johnny's personality and memories, they must confront powerful corporations, criminal gangs, and their own mortality in a world where technology and humanity blur.</p>
+            <p>With three distinct lifepaths to choose from - Street Kid, Corpo, or Nomad - V's story can unfold in countless ways. Each choice shapes their reputation, relationships, and ultimately, their destiny in Night City's neon-soaked underworld. Whether you're a netrunner hacking through corporate firewalls or a solo brawling through gang territories, V's journey is one of self-discovery, survival, and the search for meaning in a world that has lost its way.</p>
         </div>
     </div>
 
     <script>
-        // Create floating particles
+        // Create floating particles with V theme colors
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 30;
+        const particleCount = 40;
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             
-            // Random colors
-            const colors = ['#ff2a6d', '#05d9e8', '#d300c5', '#f9f002'];
+            // V theme colors: Orange and Pink
+            const colors = ['#ff6b35', '#ff2a6d', '#ff2a6d', '#ff6b35', '#ff2a6d'];
             particle.style.background = colors[Math.floor(Math.random() * colors.length)];
             
             // Random sizes
-            const size = Math.random() * 4 + 2;
+            const size = Math.random() * 6 + 3;
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
+            
+            // Random opacity
+            particle.style.opacity = Math.random() * 0.4 + 0.3;
             
             particlesContainer.appendChild(particle);
         }
 
-        // Smooth scroll for navigation
+        // Enhanced smooth scroll for navigation
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -695,7 +763,7 @@
             });
         });
 
-        // Add glitch effect on hover for gallery items
+        // Add enhanced glitch effect on hover for gallery items
         const galleryItems = document.querySelectorAll('.gallery-item');
         galleryItems.forEach(item => {
             item.addEventListener('mouseenter', function() {
@@ -711,10 +779,29 @@
             const scrolled = window.pageYOffset;
             const header = document.querySelector('header');
             if (header) {
-                header.style.transform = `translateY(${scrolled * 0.3}px)`;
-                header.style.opacity = 1 - (scrolled / 500);
+                header.style.transform = `translateY(${scrolled * 0.4}px)`;
+                header.style.opacity = 1 - (scrolled / 700);
             }
         });
+
+        // Random glitch effect for logo
+        setInterval(function() {
+            const logo = document.querySelector('.glitch');
+            if (logo) {
+                logo.style.animation = 'none';
+                setTimeout(() => {
+                    logo.style.animation = 'glitch-skew 3s infinite linear alternate-reverse';
+                }, 100);
+            }
+        }, 5000 + Math.random() * 5000);
+
+        // Add subtle shaking to particles
+        setInterval(function() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(p => {
+                p.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px)`;
+            });
+        }, 3000);
     </script>
 </body>
 </html>
