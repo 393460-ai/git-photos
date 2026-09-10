@@ -49,6 +49,12 @@
                 linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 42, 109, 0.05) 50%, rgba(5, 217, 232, 0.03) 100%);
             pointer-events: none;
             z-index: -1;
+            animation: bg-pulse 20s ease infinite;
+        }
+
+        @keyframes bg-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
         /* Enhanced Scanlines - More Subtle */
@@ -69,12 +75,17 @@
             pointer-events: none;
             z-index: 9999;
             opacity: 0.5;
-            animation: scanlines 0.1s linear infinite;
+            animation: scanlines 0.1s linear infinite, scanlines-flicker 0.5s ease-in-out infinite;
         }
 
         @keyframes scanlines {
             0% { background-position: 0 0; }
             100% { background-position: 0 4px; }
+        }
+
+        @keyframes scanlines-flicker {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.3; }
         }
 
         /* V Logo Glitch Effect - Enhanced */
@@ -174,6 +185,12 @@
             padding: 40px 20px 20px;
             position: relative;
             z-index: 100;
+            animation: header-float 6s ease-in-out infinite;
+        }
+
+        @keyframes header-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .logo {
@@ -188,7 +205,12 @@
                 0 0 40px var(--neon-orange);
             letter-spacing: 8px;
             margin-bottom: 10px;
-            animation: neon-pulse 1.5s ease-in-out infinite alternate, color-shift 8s ease infinite;
+            animation: neon-pulse 1.5s ease-in-out infinite alternate, color-shift 8s ease infinite, text-flicker 0.1s ease-in-out infinite;
+        }
+
+        @keyframes text-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.98; }
         }
 
         @keyframes neon-pulse {
@@ -220,7 +242,12 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             margin-bottom: 20px;
-            animation: flicker 3s infinite;
+            animation: flicker 3s infinite, tagline-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes tagline-glow {
+            from { text-shadow: 0 0 5px var(--neon-blue); }
+            to { text-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-blue); }
         }
 
         @keyframes flicker {
@@ -244,6 +271,12 @@
                 inset 0 0 30px rgba(255, 42, 109, 0.1);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+            animation: nav-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes nav-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.3), inset 0 0 30px rgba(255, 42, 109, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.5), inset 0 0 40px rgba(255, 42, 109, 0.2); }
         }
 
         nav ul {
@@ -269,6 +302,12 @@
             transition: all 0.3s ease;
             position: relative;
             background: rgba(255, 107, 53, 0.05);
+            animation: nav-link-flicker 5s ease-in-out infinite;
+        }
+
+        @keyframes nav-link-flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
         }
 
         nav a::before {
@@ -281,6 +320,12 @@
             background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink));
             transition: all 0.3s ease;
             transform: translateX(-50%);
+            animation: underline-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes underline-pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
         }
 
         nav a:hover {
@@ -304,8 +349,13 @@
             bottom: -2px;
             border: 1px solid var(--neon-pink);
             border-radius: 2px;
-            animation: border-flicker 0.2s infinite;
+            animation: border-flicker 0.2s infinite, border-glow 1s ease-in-out infinite;
             z-index: -1;
+        }
+
+        @keyframes border-glow {
+            0%, 100% { box-shadow: 0 0 5px var(--neon-pink); }
+            50% { box-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink); }
         }
 
         @keyframes border-flicker {
@@ -324,7 +374,12 @@
                 0 0 20px var(--neon-orange),
                 0 0 30px var(--neon-pink);
             letter-spacing: 5px;
-            animation: title-glow 3s ease-in-out infinite;
+            animation: title-glow 3s ease-in-out infinite, title-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes title-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
         @keyframes title-glow {
@@ -341,6 +396,12 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
+            animation: gallery-pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gallery-pulse {
+            0%, 100% { gap: 30px; }
+            50% { gap: 35px; }
         }
 
         .gallery-item {
@@ -353,6 +414,17 @@
             transition: all 0.5s ease;
             border: 1px solid rgba(255, 107, 53, 0.2);
             position: relative;
+            animation: card-float 6s ease-in-out infinite, card-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes card-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes card-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.15), inset 0 0 20px rgba(255, 42, 109, 0.05); }
+            50% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.25), inset 0 0 30px rgba(255, 42, 109, 0.1); }
         }
 
         .gallery-item::before {
@@ -366,14 +438,20 @@
             background-size: 400% 400%;
             opacity: 0;
             transition: opacity 0.3s ease;
+            animation: border-gradient 5s linear infinite;
+        }
+
+        @keyframes border-gradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
         }
 
         .gallery-item:hover {
-            transform: translateY(-12px) scale(1.03);
+            transform: translateY(-12px) scale(1.03) !important;
             box-shadow: 
                 0 20px 50px rgba(255, 107, 53, 0.4),
                 0 0 50px rgba(255, 42, 109, 0.3),
-                inset 0 0 30px rgba(255, 42, 109, 0.1);
+                inset 0 0 30px rgba(255, 42, 109, 0.1) !important;
             border-color: var(--neon-orange);
         }
 
@@ -394,11 +472,18 @@
             display: block;
             transition: all 0.5s ease;
             filter: brightness(1.1) contrast(1.2) saturate(1.1);
+            animation: img-hue-shift 15s ease-in-out infinite;
+        }
+
+        @keyframes img-hue-shift {
+            0%, 100% { filter: brightness(1.1) contrast(1.2) saturate(1.1) hue-rotate(0deg); }
+            50% { filter: brightness(1.15) contrast(1.25) saturate(1.15) hue-rotate(5deg); }
         }
 
         .gallery-item:hover img {
             transform: scale(1.15);
-            filter: brightness(1.3) contrast(1.4) saturate(1.3) hue-rotate(5deg);
+            filter: brightness(1.3) contrast(1.4) saturate(1.3) hue-rotate(5deg) !important;
+            animation: none;
         }
 
         .gallery-item h3 {
@@ -413,6 +498,12 @@
             background: rgba(0, 0, 0, 0.4);
             position: relative;
             transition: all 0.3s ease;
+            animation: text-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes text-glow {
+            0%, 100% { color: var(--neon-blue); text-shadow: none; }
+            50% { color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow); }
         }
 
         .gallery-item h3::after {
@@ -425,6 +516,12 @@
             background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink));
             transform: translateX(-50%);
             transition: all 0.3s ease;
+            animation: underline-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes underline-glow {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; box-shadow: 0 0 10px var(--neon-orange); }
         }
 
         .gallery-item:hover h3 {
@@ -449,6 +546,12 @@
             border: 1px solid rgba(255, 107, 53, 0.2);
             position: relative;
             overflow: hidden;
+            animation: section-fade-in 1s ease-out;
+        }
+
+        @keyframes section-fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section::before {
@@ -460,7 +563,12 @@
             height: 5px;
             background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink), var(--neon-blue), var(--neon-purple), var(--neon-yellow));
             background-size: 400% 400%;
-            animation: gradient 6s ease infinite;
+            animation: gradient 6s ease infinite, section-border-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes section-border-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; box-shadow: 0 0 10px var(--neon-orange); }
         }
 
         @keyframes gradient {
@@ -478,6 +586,12 @@
             letter-spacing: 4px;
             position: relative;
             padding-bottom: 15px;
+            animation: heading-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes heading-pulse {
+            0%, 100% { text-shadow: 0 0 15px var(--neon-orange); }
+            50% { text-shadow: 0 0 25px var(--neon-orange), 0 0 35px var(--neon-pink); }
         }
 
         .section h2::after {
@@ -489,6 +603,12 @@
             height: 4px;
             background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
             box-shadow: 0 0 15px var(--neon-pink);
+            animation: heading-underline 3s ease-in-out infinite;
+        }
+
+        @keyframes heading-underline {
+            0%, 100% { width: 80px; }
+            50% { width: 100px; box-shadow: 0 0 25px var(--neon-pink); }
         }
 
         .section p {
@@ -496,6 +616,12 @@
             line-height: 1.9;
             font-size: 1.15rem;
             margin-bottom: 20px;
+            animation: text-fade 2s ease-in-out infinite;
+        }
+
+        @keyframes text-fade {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
         }
 
         /* Cyberpunk scrollbar */
@@ -505,11 +631,23 @@
 
         ::-webkit-scrollbar-track {
             background: var(--darker-bg);
+            animation: scrollbar-track-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes scrollbar-track-pulse {
+            0%, 100% { background: var(--darker-bg); }
+            50% { background: rgba(255, 107, 53, 0.1); }
         }
 
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(180deg, var(--neon-orange), var(--neon-pink));
             border-radius: 6px;
+            animation: scrollbar-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollbar-glow {
+            0%, 100% { box-shadow: 0 0 5px var(--neon-orange); }
+            50% { box-shadow: 0 0 15px var(--neon-orange), 0 0 25px var(--neon-pink); }
         }
 
         ::-webkit-scrollbar-thumb:hover {
@@ -536,7 +674,12 @@
             background: var(--neon-orange);
             border-radius: 50%;
             opacity: 0.6;
-            animation: float 20s infinite ease-in-out;
+            animation: float 20s infinite ease-in-out, particle-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes particle-pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.2); }
         }
 
         @keyframes float {
@@ -569,6 +712,36 @@
                 radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.03) 0%, transparent 10%),
                 radial-gradient(circle at 80% 80%, rgba(255, 42, 109, 0.03) 0%, transparent 10%),
                 radial-gradient(circle at 50% 50%, rgba(5, 217, 232, 0.02) 0%, transparent 15%);
+            animation: pattern-rotate 60s linear infinite;
+        }
+
+        @keyframes pattern-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Neon Lines Effect */
+        .neon-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .neon-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-pink), transparent);
+            animation: line-move 10s linear infinite;
+        }
+
+        @keyframes line-move {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         /* Responsive */
@@ -626,10 +799,23 @@
             background: var(--neon-orange);
             color: var(--dark-bg);
         }
+
+        /* Random flicker effect for the whole page */
+        @keyframes page-flicker {
+            0%, 100% { filter: brightness(1); }
+            98% { filter: brightness(1); }
+            99% { filter: brightness(1.02); }
+            100% { filter: brightness(1); }
+        }
+
+        html {
+            animation: page-flicker 8s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
     <div class="v-pattern"></div>
+    <div class="neon-lines" id="neon-lines"></div>
     <div class="particles" id="particles"></div>
     
     <header>
@@ -720,7 +906,7 @@
     <script>
         // Create floating particles with V theme colors
         const particlesContainer = document.getElementById('particles');
-        const particleCount = 40;
+        const particleCount = 50;
 
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -731,7 +917,7 @@
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             
             // V theme colors: Orange and Pink
-            const colors = ['#ff6b35', '#ff2a6d', '#ff2a6d', '#ff6b35', '#ff2a6d'];
+            const colors = ['#ff6b35', '#ff2a6d', '#ff2a6d', '#ff6b35', '#ff2a6d', '#05d9e8', '#d300c5'];
             particle.style.background = colors[Math.floor(Math.random() * colors.length)];
             
             // Random sizes
@@ -743,6 +929,21 @@
             particle.style.opacity = Math.random() * 0.4 + 0.3;
             
             particlesContainer.appendChild(particle);
+        }
+
+        // Create neon lines
+        const neonLinesContainer = document.getElementById('neon-lines');
+        const lineCount = 5;
+
+        for (let i = 0; i < lineCount; i++) {
+            const line = document.createElement('div');
+            line.className = 'neon-line';
+            line.style.top = (i * 20 + 10) + '%';
+            line.style.width = '200%';
+            line.style.animationDuration = (10 + Math.random() * 5) + 's';
+            line.style.animationDelay = Math.random() * 5 + 's';
+            line.style.opacity = Math.random() * 0.3 + 0.2;
+            neonLinesContainer.appendChild(line);
         }
 
         // Enhanced smooth scroll for navigation
@@ -798,6 +999,91 @@
                 p.style.transform = `translate(${Math.random() * 2 - 1}px, ${Math.random() * 2 - 1}px)`;
             });
         }, 3000);
+
+        // Random flicker effect for entire page
+        setInterval(function() {
+            document.body.style.filter = 'brightness(' + (1 + Math.random() * 0.02) + ')';
+            setTimeout(() => {
+                document.body.style.filter = 'brightness(1)';
+            }, 50);
+        }, 8000);
+
+        // Add hover sound effect simulation (visual)
+        galleryItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.1s ease';
+                setTimeout(() => {
+                    this.style.transition = 'all 0.5s ease';
+                }, 100);
+            });
+        });
+
+        // Scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'section-fade-in 1s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mouse trail effect
+        const trail = document.createElement('div');
+        trail.style.position = 'fixed';
+        trail.style.width = '20px';
+        trail.style.height = '20px';
+        trail.style.borderRadius = '50%';
+        trail.style.pointerEvents = 'none';
+        trail.style.zIndex = '9999';
+        trail.style.filter = 'blur(10px)';
+        trail.style.opacity = '0';
+        trail.style.transition = 'all 0.1s ease';
+        document.body.appendChild(trail);
+
+        document.addEventListener('mousemove', (e) => {
+            trail.style.left = (e.clientX - 10) + 'px';
+            trail.style.top = (e.clientY - 10) + 'px';
+            trail.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.3)`;
+            trail.style.opacity = '0.5';
+            setTimeout(() => {
+                trail.style.opacity = '0';
+            }, 100);
+        });
+
+        // Random neon flash effect
+        setInterval(() => {
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100%';
+            flash.style.height = '100%';
+            flash.style.background = `rgba(255, 107, 53, ${Math.random() * 0.05 + 0.02})`;
+            flash.style.pointerEvents = 'none';
+            flash.style.zIndex = '9998';
+            flash.style.animation = 'flash-fade 0.5s ease-out';
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 500);
+        }, 15000);
+
+        // Add CSS for flash effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes flash-fade {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
