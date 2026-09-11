@@ -554,16 +554,17 @@
         }
 
         .modal-content {
-            background: var(--darker-bg);
+            background: var(--card-bg);
             margin: 10% auto;
             padding: 40px;
-            border: 1px solid var(--neon-orange);
+            border: 2px solid var(--neon-orange);
             border-radius: 8px;
             width: 80%;
             max-width: 600px;
-            box-shadow: 0 0 30px var(--neon-orange);
+            box-shadow: 0 0 50px var(--neon-orange);
             position: relative;
             animation: modalSlideIn 0.3s ease;
+            color: var(--text-primary);
         }
 
         @keyframes modalSlideIn {
@@ -592,10 +593,11 @@
             font-family: 'Orbitron', sans-serif;
             margin-bottom: 20px;
             text-align: center;
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         #modal-description {
-            color: var(--text-secondary);
+            color: var(--text-primary);
             line-height: 1.8;
             font-size: 1.1rem;
             text-align: center;
