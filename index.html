@@ -534,6 +534,73 @@
             box-shadow: 0 0 15px var(--neon-orange);
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--darker-bg);
+            margin: 10% auto;
+            padding: 40px;
+            border: 1px solid var(--neon-orange);
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 30px var(--neon-orange);
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 35px;
+            font-weight: bold;
+            color: var(--neon-pink);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--neon-orange);
+            text-shadow: 0 0 10px var(--neon-orange);
+        }
+
+        #modal-title {
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #modal-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
         /* Section Styling */
         .section {
             margin-top: 50px;
@@ -885,8 +952,25 @@
                 <h3>Neon Poster</h3>
             </div>
             <div class="gallery-item">
-                <img src="https://images.stockcake.com/public/3/b/a/3badc618-248d-4b44-8652-468e38c5bf58_large/sunset-over-ocean-stockcake.jpg" alt="Sunset Ocean">
-                <h3>Sunset Ocean</h3>
+                <img src="https://www.watchmojo.com/uploads/thumbs720/MP-Top10-Sickest-Vehicles-in-Cyberpunk-2077_D5T5H7.webp" alt="Cyberpunk Vehicles 1">
+                <h3>Night City Vehicles</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.watchmojo.com/uploads/thumbs720/MP-Top10-Sickest-Vehicles-in-Cyberpunk-2077_D5T5H7.webp" alt="Cyberpunk Vehicles 2">
+                <h3>Sick Rides</h3>
+            </div>
+            <div class="gallery-item">
+                <img src="https://www.watchmojo.com/uploads/thumbs720/MP-Top10-Sickest-Vehicles-in-Cyberpunk-2077_D5T5H7.webp" alt="Cyberpunk Vehicles 3">
+                <h3>2077 Garage</h3>
+            </div>
+        </div>
+
+        <!-- Image Description Modal -->
+        <div id="image-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
             </div>
         </div>
 
@@ -1016,6 +1100,60 @@
                     this.style.transition = 'all 0.5s ease';
                 }, 100);
             });
+        });
+
+        // Image descriptions data
+        const imageDescriptions = {
+            'V': 'The legendary protagonist of Cyberpunk 2077, V is a mercenary navigating the neon-soaked streets of Night City with style and cyberware.',
+            'Cyberpunk V': 'A striking portrait of V showcasing the iconic cybernetic enhancements and edgy aesthetic that defines Night Citys most dangerous mercenaries.',
+            'Cyber Scene - Night City': 'A breathtaking view of Night City at night, where neon lights reflect off the rain-slicked streets creating a cyberpunk paradise.',
+            'Edgerunner': 'Inspired by Cyberpunk: Edgerunners, this character embodies the raw energy and rebellious spirit of Night Citys street samurai.',
+            'Neon Art': 'Abstract neon artwork capturing the electric essence of the cyberpunk genre with vibrant colors and geometric patterns.',
+            'Night City': 'The sprawling metropolis of Night City, a place where technology and humanity collide in a symphony of neon and chrome.',
+            'V Art': 'Artistic interpretation of V, highlighting the character customization and unique style that makes each playthrough special.',
+            '2077 Ride': 'A sleek cyberpunk vehicle ready to tear through the streets of Night City with style and speed.',
+            'Neon Lights': 'Dazzling neon signage and lighting that brings the futuristic atmosphere of Night City to life.',
+            'V Neon': 'V bathed in neon glow, representing the perfect fusion of human and machine in the cyberpunk world.',
+            'Badlands': 'The harsh desert landscape outside Night City, where danger lurks and only the toughest survive.',
+            'Neon Poster': 'A vintage-style poster celebrating the neon aesthetic and cyberpunk culture of Night City.',
+            'Night City Vehicles': 'The most iconic and powerful vehicles from Cyberpunk 2077, from sleek sports cars to heavily armored beasts.',
+            'Sick Rides': 'A collection of the sickest vehicles in Night City, each with unique modifications and custom paint jobs.',
+            '2077 Garage': 'Your personal garage in Night City, where you can store and customize your collection of high-performance vehicles.'
+        };
+
+        // Modal functionality
+        const modal = document.getElementById('image-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // Add click event to each gallery item
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('h3').textContent;
+                modalTitle.textContent = title;
+                modalDescription.textContent = imageDescriptions[title] || 'Explore the cyberpunk world through stunning visuals.';
+                modal.style.display = 'block';
+            });
+        });
+
+        // Close modal when clicking X
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside content
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
         });
 
         // Scroll-triggered animations
