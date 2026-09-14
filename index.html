@@ -939,6 +939,23 @@
             animation: avatar-glow 2s ease-in-out infinite;
         }
 
+        .avatar-description {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(10, 4, 10, 0.8);
+            border: 1px solid var(--neon-purple);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 0 15px rgba(211, 0, 197, 0.3);
+        }
+
         @keyframes avatar-glow {
             0%, 100% { box-shadow: 0 0 30px var(--neon-orange); }
             50% { box-shadow: 0 0 50px var(--neon-pink), 0 0 70px var(--neon-orange); }
@@ -1157,13 +1174,24 @@
                         <option value="Futuristic">High-Tech</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label>DESCRIPTION TONE</label>
+                    <select id="description-tone">
+                        <option value="serious">Serious</option>
+                        <option value="funny">Funny</option>
+                        <option value="epic">Epic</option>
+                        <option value="mysterious">Mysterious</option>
+                    </select>
+                </div>
             </div>
             <button id="generate-avatar" class="cyber-btn">GENERATE AVATAR</button>
             <div id="avatar-result" class="avatar-result">
                 <img id="avatar-image" src="" alt="Your V Avatar">
+                <p id="avatar-description" class="avatar-description"></p>
                 <div>
                     <button id="download-avatar" class="cyber-btn">DOWNLOAD</button>
                     <button id="add-to-gallery" class="cyber-btn">ADD TO GALLERY</button>
+                    <button id="regenerate-description" class="cyber-btn">NEW DESCRIPTION</button>
                 </div>
             </div>
         </div>
@@ -1347,6 +1375,138 @@
             });
         });
 
+        // Description templates for different tones
+        const descriptionTemplates = {
+            serious: {
+                street: [
+                    "A hardened {{gender}} who grew up on the brutal streets of Night City. {{HisHerTheir}} {{cyberware}} tell the story of a life spent in the shadows, where every scar has a story and every choice could be the last.",
+                    "{{Gender}} Street Kid with {{cyberware}}. {{HeSheThey}} know{{s}} every alley, every gang, every hidden danger in Night City. Survival isn't just a skill—it's a way of life.",
+                    "The streets shaped {{himHerThem}}. {{Gender}} with {{cyberware}} and a {{style}} demeanor. In Night City, trust is a luxury {{heSheThey}} can't afford."
+                ],
+                corpo: [
+                    "A former corporate elite, now navigating the criminal underworld. {{HisHerTheir}} {{cyberware}} are top-of-the-line—proof of a past life among the elite, now repurposed for survival.",
+                    "{{Gender}} Corpo with {{cyberware}}. {{HeSheThey}} moved from boardrooms to back alleys, trading power suits for combat gear. The fall was hard, but {{heSheThey}} {{isAre}} harder.",
+                    "Corporate training meets street smarts. {{Gender}} with {{cyberware}} knows how to manipulate systems and people. In Night City, information is the most valuable currency."
+                ],
+                nomad: [
+                    "A nomad at heart, {{heSheThey}} {{isAre}} more comfortable in the Badlands than the neon jungle. {{HisHerTheir}} {{cyberware}} are built for endurance, not style.",
+                    "{{Gender}} Nomad with {{cyberware}}. The open road is {{hisHerTheir}} home, and Night City is just another stop on the journey. {{HeSheThey}} don't trust easily, but {{heSheThey}} {{isAre}} loyal to a fault.",
+                    "Born to roam, trained to survive. {{Gender}} with {{cyberware}} carries the spirit of the Badlands wherever {{heSheThey}} {{goesGo}}. The city's chaos is nothing compared to the wilderness."
+                ]
+            },
+            funny: {
+                street: [
+                    "{{Gender}} Street Kid with {{cyberware}}. {{HeSheThey}} {{stealsSteal}} bikes, {{hacksHack}} systems, and {{eatsEat}} more synth-food than any doctor would recommend. 10/10, would survive apocalypse.",
+                    "Meet {{gender}}, professional trouble-maker. {{HisHerTheir}} {{cyberware}} {{isAre}} mostly for show, but don't tell {{himHerThem}} that. The illusion is half the fun.",
+                    "{{Gender}} with {{cyberware}} and a death wish. Or maybe just really bad luck. Either way, {{heSheThey}} {{always}} {{endsEnd}} up in the middle of something explosive."
+                ],
+                corpo: [
+                    "Ex-Corporate {{gender}} who discovered that 'team player' doesn't mean the same thing on the streets. {{HisHerTheir}} {{cyberware}} cost more than your apartment.",
+                    "{{Gender}} Corpo with {{cyberware}}. {{HeSheThey}} used to have a 401k. Now {{heSheThey}} {{hasHave}} a 401-kill count. Progress?",
+                    "From power lunches to power chords. {{Gender}} with {{cyberware}} is living {{hisHerTheir}} best life: no dress code, no meetings, no regrets."
+                ],
+                nomad: [
+                    "{{Gender}} Nomad: {{heSheThey}} {{drivesDrive}} a car that costs more than Night City, but {{heSheThey}} {{sleepsSleep}} in a tent. Priorities.",
+                    "{{HisHerTheir}} idea of air conditioning is rolling down the window. {{Gender}} with {{cyberware}} and a vehicle that's held together by duct tape and hope.",
+                    "{{Gender}} Nomad with {{cyberware}}. {{HeSheThey}} {{could}} outrun a Maelstrom gang, a corporate hit squad, and {{hisHerTheir}} own bad decisions. Usually."
+                ]
+            },
+            epic: {
+                street: [
+                    "Forged in the fires of Night City's meanest districts. {{Gender}} with {{cyberware}} and a {{style}} presence that commands respect. The streets whisper {{hisHerTheir}} name.",
+                    "A legend among the alleys and rooftops. {{Gender}} Street Kid with {{cyberware}} moves like a shadow and strikes like lightning. Night City fears {{himHerThem}}.",
+                    "{{Gender}} rose from nothing with only {{hisHerTheir}} {{cyberware}} and sheer will. Now the city trembles at {{hisHerTheir}} approach. The ultimate underdog story."
+                ],
+                corpo: [
+                    "A titan who fell from the corporate heavens. {{Gender}} with {{cyberware}} now walks among mortals, but {{hisHerTheir}} presence still commands the room. Power doesn't fade—it evolves.",
+                    "From penthouse to pavement, {{gender}} never lost {{hisHerTheir}} edge. {{HisHerTheir}} {{cyberware}} are a testament to {{hisHerTheir}} journey. Night City doesn't know what hit it.",
+                    "{{Gender}} Corpo with {{cyberware}}. {{HeSheThey}} played the corporate game and won. Now {{heSheThey}} {{isAre}} rewriting the rules of the street. A force to be reckoned with."
+                ],
+                nomad: [
+                    "The Badlands couldn't contain {{himHerThem}}, so {{heSheThey}} came to Night City. {{Gender}} with {{cyberware}} brings the wild to the urban jungle. The city isn't ready.",
+                    "A storm on wheels. {{Gender}} Nomad with {{cyberware}} rolls into town like a force of nature. When {{heSheThey}} {{arrivesArrive}}, the weak flee and the strong prepare.",
+                    "{{Gender}} carries the spirit of the wasteland. {{HisHerTheir}} {{cyberware}} tell tales of battles most can't imagine. Night City is just another frontier to conquer."
+                ]
+            },
+            mysterious: {
+                street: [
+                    "{{Gender}} appears from the shadows, {{hisHerTheir}} {{cyberware}} glinting in the neon light. {{HeSheThey}} {{speaksSpeak}} little, but {{hisHerTheir}} eyes have seen too much. What secrets does {{heSheThey}} keep?",
+                    "A ghost in the machine. {{Gender}} with {{cyberware}} moves unseen through Night City's underbelly. {{HeSheThey}} {{isAre}} the whisper in the dark, the figure in the corner of your eye.",
+                    "{{Gender}} Street Kid with {{cyberware}}. {{HeSheThey}} {{knowsKnow}} things. Dangerous things. Things that could get you killed. Approach with caution."
+                ],
+                corpo: [
+                    "{{Gender}} wears {{hisHerTheir}} secrets like armor. {{HisHerTheir}} {{cyberware}} hide more than they reveal. What corporate sins does {{heSheThey}} carry?",
+                    "A shadow of {{hisHerTheir}} former self. {{Gender}} with {{cyberware}} moves through the city like a specter. The past is a locked file, and {{heSheThey}} {{isAre}} the only one with the key.",
+                    "{{Gender}} Corpo with {{cyberware}}. {{HeSheThey}} {{left}} the corporate world, but it never left {{himHerThem}}. There are ghosts in {{hisHerTheir}} code."
+                ],
+                nomad: [
+                    "{{Gender}} arrived from nowhere and everywhere. {{HisHerTheir}} {{cyberware}} bear the marks of a thousand unseen battles. What horrors has {{heSheThey}} witnessed in the Badlands?",
+                    "A traveler with no destination. {{Gender}} with {{cyberware}} carries the weight of the wasteland in {{hisHerTheir}} gaze. {{HeSheThey}} {{seesSee}} things others can't—or won't.",
+                    "{{Gender}} Nomad with {{cyberware}}. The road is {{hisHerTheir}} home, but Night City is where {{hisHerTheir}} demons live. What follows {{himHerThem}} from the Badlands?"
+                ]
+            }
+        };
+
+        // Helper function to generate description
+        function generateDescription(lifepath, gender, cyberware, style, tone) {
+            // Normalize lifepath key
+            const lifepathKey = lifepath.toLowerCase().replace(' ', '');
+            const genderLower = gender.toLowerCase();
+            
+            // Pronoun mappings
+            const pronouns = {
+                male: { heSheThey: 'he', hisHerTheir: 'his', himHerThem: 'him', isAre: 'is', hasHave: 'has', s: 's', goesGo: 'goes', endsEnd: 'ends', speaksSpeak: 'speaks', knowsKnow: 'knows', left: 'left', could: 'could', always: 'always', stealsSteal: 'steals', hacksHack: 'hacks', eatsEat: 'eats', drivesDrive: 'drives', sleepsSleep: 'sleeps', can: 'can', seesSee: 'sees', arrivesArrive: 'arrives' },
+                female: { heSheThey: 'she', hisHerTheir: 'her', himHerThem: 'her', isAre: 'is', hasHave: 'has', s: 's', goesGo: 'goes', endsEnd: 'ends', speaksSpeak: 'speaks', knowsKnow: 'knows', left: 'left', could: 'could', always: 'always', stealsSteal: 'steals', hacksHack: 'hacks', eatsEat: 'eats', drivesDrive: 'drives', sleepsSleep: 'sleeps', can: 'can', seesSee: 'sees', arrivesArrive: 'arrives' },
+                'non-binary': { heSheThey: 'they', hisHerTheir: 'their', himHerThem: 'them', isAre: 'are', hasHave: 'have', s: '', goesGo: 'go', endsEnd: 'end', speaksSpeak: 'speak', knowsKnow: 'know', left: 'left', could: 'could', always: 'always', stealsSteal: 'steal', hacksHack: 'hack', eatsEat: 'eat', drivesDrive: 'drive', sleepsSleep: 'sleep', can: 'can', seesSee: 'see', arrivesArrive: 'arrive' }
+            };
+            
+            const p = pronouns[genderLower] || pronouns.male;
+            
+            // Get templates for this tone and lifepath
+            const templates = descriptionTemplates[tone]?.[lifepathKey] || descriptionTemplates[tone]?.street || [];
+            
+            if (templates.length === 0) {
+                return "A mysterious figure in Night City. Their story is written in the neon and shadows.";
+            }
+            
+            // Pick a random template
+            const template = templates[Math.floor(Math.random() * templates.length)];
+            
+            // Replace placeholders
+            let description = template
+                .replace(/\{\{gender\}\}/gi, gender)
+                .replace(/\{\{heSheThey\}\}/gi, p.heSheThey)
+                .replace(/\{\{hisHerTheir\}\}/gi, p.hisHerTheir)
+                .replace(/\{\{himHerThem\}\}/gi, p.himHerThem)
+                .replace(/\{\{isAre\}\}/gi, p.isAre)
+                .replace(/\{\{hasHave\}\}/gi, p.hasHave)
+                .replace(/\{\{s\}\}/gi, p.s)
+                .replace(/\{\{goesGo\}\}/gi, p.goesGo)
+                .replace(/\{\{endsEnd\}\}/gi, p.endsEnd)
+                .replace(/\{\{speaksSpeak\}\}/gi, p.speaksSpeak)
+                .replace(/\{\{knowsKnow\}\}/gi, p.knowsKnow)
+                .replace(/\{\{left\}\}/gi, p.left)
+                .replace(/\{\{could\}\}/gi, p.could)
+                .replace(/\{\{always\}\}/gi, p.always)
+                .replace(/\{\{stealsSteal\}\}/gi, p.stealsSteal)
+                .replace(/\{\{hacksHack\}\}/gi, p.hacksHack)
+                .replace(/\{\{eatsEat\}\}/gi, p.eatsEat)
+                .replace(/\{\{drivesDrive\}\}/gi, p.drivesDrive)
+                .replace(/\{\{sleepsSleep\}\}/gi, p.sleepsSleep)
+                .replace(/\{\{can\}\}/gi, p.can)
+                .replace(/\{\{seesSee\}\}/gi, p.seesSee)
+                .replace(/\{\{arrivesArrive\}\}/gi, p.arrivesArrive);
+            
+            // Replace cyberware - clean up the string
+            const cyberwareClean = cyberware.replace(/,\s*$/, '');
+            description = description.replace(/\{\{cyberware\}\}/gi, cyberwareClean || 'cybernetic enhancements');
+            
+            // Replace style
+            description = description.replace(/\{\{style\}\}/gi, style.toLowerCase() || 'formidable');
+            
+            return description;
+        }
+
         // Avatar Generator Functionality
         document.getElementById('generate-avatar').addEventListener('click', function() {
             const lifepath = document.getElementById('lifepath').value;
@@ -1355,6 +1515,7 @@
                               .map(opt => opt.value)
                               .join(', ');
             const style = document.getElementById('style').value;
+            const tone = document.getElementById('description-tone').value;
 
             const btn = this;
             btn.textContent = 'GENERATING...';
@@ -1371,14 +1532,32 @@
             ];
             const randomImage = demoImages[Math.floor(Math.random() * demoImages.length)];
             
+            // Generate description
+            const description = generateDescription(lifepath, gender, cyberware, style, tone);
+            
             // Use setTimeout to simulate loading and allow UI to update
             setTimeout(function() {
                 document.getElementById('avatar-image').src = randomImage;
+                document.getElementById('avatar-description').textContent = description;
                 document.querySelector('.avatar-result').style.display = 'block';
                 btn.textContent = 'GENERATE AVATAR';
                 btn.disabled = false;
                 document.getElementById('avatar-generator').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 1000);
+        });
+
+        // Regenerate description button
+        document.getElementById('regenerate-description').addEventListener('click', function() {
+            const lifepath = document.getElementById('lifepath').value;
+            const gender = document.getElementById('gender').value;
+            const cyberware = Array.from(document.getElementById('cyberware').selectedOptions)
+                              .map(opt => opt.value)
+                              .join(', ');
+            const style = document.getElementById('style').value;
+            const tone = document.getElementById('description-tone').value;
+            
+            const description = generateDescription(lifepath, gender, cyberware, style, tone);
+            document.getElementById('avatar-description').textContent = description;
         });
 
         // Download button
