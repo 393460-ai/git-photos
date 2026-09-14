@@ -1363,20 +1363,26 @@
             const prompt = `Cyberpunk 2077 style portrait of ${gender} character, ${lifepath} lifepath, ${style} style, ${cyberware} cyberware, neon lighting, ultra-detailed, cinematic, 4k, cyberpunk aesthetic, Night City background, glowing eyes, high-tech armor, dystopian future`;
 
             try {
-                // For demo purposes, use a placeholder image
+                // For demo purposes, use a placeholder image from existing gallery
                 // In production, replace with actual API call to Replicate/Stable Diffusion
                 const demoImages = [
                     'https://i.pinimg.com/originals/b7/9e/6b/b79e6bbcc064cbcec5e573394406a081.png',
                     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM8Flh-39ADr24ky0dJDZ_XsWuX5-_sA4ToxmJPkDy4Iy6BglT5H_40fl6&s=10',
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYJZLkHlnVseLaeGJrEPK5K_DiAAqnBOKXz_YBV4vDlseAMPkbUlSWeoZO&s=10'
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYJZLkHlnVseLaeGJrEPK5K_DiAAqnBOKXz_YBV4vDlseAMPkbUlSWeoZO&s=10',
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOlDXrjAcJ_wuzJ31VjDaEeg9nYtoq91zfRNTTsyvpAwdx3cJd5D-VdnLe&s=10',
+                    'https://i.pinimg.com/736x/c7/70/e1/c770e1ec12b0e12c45c1fd9e4511ea37.jpg',
+                    'https://i.redd.it/2evl634v607e1.jpeg'
                 ];
                 const randomImage = demoImages[Math.floor(Math.random() * demoImages.length)];
                 
                 // Simulate API delay
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 document.getElementById('avatar-image').src = randomImage;
                 document.querySelector('.avatar-result').style.display = 'block';
+                
+                // Scroll to result
+                document.getElementById('avatar-generator').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             } catch (error) {
                 alert('Error generating avatar: ' + error.message);
