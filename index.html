@@ -813,6 +813,137 @@
             100% { transform: translateX(100%); }
         }
 
+        /* Mood Filter Styles */
+        .mood-filter-container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(10, 4, 10, 0.8);
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 20px rgba(5, 217, 232, 0.2);
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+        }
+
+        .mood-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .mood-btn {
+            background: rgba(255, 42, 109, 0.2);
+            color: var(--neon-pink);
+            border: 1px solid var(--neon-pink);
+            padding: 10px 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .mood-btn:hover, .mood-btn.active {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-orange));
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-pink);
+            border-color: transparent;
+        }
+
+        .mood-btn.active {
+            transform: scale(1.05);
+        }
+
+        /* Avatar Generator Styles */
+        .avatar-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .form-group {
+            text-align: center;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--neon-orange);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(10, 4, 10, 0.8);
+            border: 1px solid var(--neon-pink);
+            color: var(--text-primary);
+            font-family: 'Rajdhani', sans-serif;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--neon-orange);
+            box-shadow: 0 0 10px var(--neon-orange);
+        }
+
+        .cyber-btn {
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-orange));
+            color: var(--dark-bg);
+            border: none;
+            padding: 14px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin: 10px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--neon-pink);
+        }
+
+        .cyber-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--neon-orange), 0 0 35px var(--neon-pink);
+            background: linear-gradient(135deg, var(--neon-orange), var(--neon-pink));
+        }
+
+        .avatar-result {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(10, 4, 10, 0.7);
+            border-radius: 8px;
+            border: 1px solid var(--neon-blue);
+            display: none;
+        }
+
+        #avatar-image {
+            max-width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 30px var(--neon-orange);
+            border: 2px solid var(--neon-pink);
+            animation: avatar-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes avatar-glow {
+            0%, 100% { box-shadow: 0 0 30px var(--neon-orange); }
+            50% { box-shadow: 0 0 50px var(--neon-pink), 0 0 70px var(--neon-orange); }
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .gallery {
@@ -901,6 +1032,18 @@
         </ul>
     </nav>
 
+    <div class="mood-filter-container">
+        <div class="mood-buttons">
+            <button class="mood-btn active" data-mood="all">ALL</button>
+            <button class="mood-btn" data-mood="dark">DARK</button>
+            <button class="mood-btn" data-mood="neon">NEON</button>
+            <button class="mood-btn" data-mood="futuristic">FUTURISTIC</button>
+            <button class="mood-btn" data-mood="chaotic">CHAOTIC</button>
+            <button class="mood-btn" data-mood="serene">SERENE</button>
+            <button class="mood-btn" data-mood="gritty">GRITTY</button>
+        </div>
+    </div>
+
     <div class="container" id="top">
         <h1>NEON DREAMS</h1>
         
@@ -973,6 +1116,55 @@
                 <span class="close-btn">&times;</span>
                 <h2 id="modal-title"></h2>
                 <p id="modal-description"></p>
+            </div>
+        </div>
+
+        <div class="section" id="avatar-generator">
+            <h2>CREATE YOUR V</h2>
+            <div class="avatar-form">
+                <div class="form-group">
+                    <label>LIFEPATH</label>
+                    <select id="lifepath">
+                        <option value="Street Kid">Street Kid</option>
+                        <option value="Corpo">Corpo</option>
+                        <option value="Nomad">Nomad</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>GENDER</label>
+                    <select id="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Non-binary">Non-binary</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>CYBERWARE</label>
+                    <select id="cyberware" multiple>
+                        <option value="Optics">Glowing Optics</option>
+                        <option value="Arms">Cybernetic Arms</option>
+                        <option value="Legs">Reinforced Legs</option>
+                        <option value="Neural">Neural Interface</option>
+                        <option value="None">No Cyberware</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>STYLE</label>
+                    <select id="style">
+                        <option value="Edgy">Edgy & Dark</option>
+                        <option value="Neon">Bright Neon</option>
+                        <option value="Stealth">Tactical Stealth</option>
+                        <option value="Futuristic">High-Tech</option>
+                    </select>
+                </div>
+            </div>
+            <button id="generate-avatar" class="cyber-btn">GENERATE AVATAR</button>
+            <div id="avatar-result" class="avatar-result">
+                <img id="avatar-image" src="" alt="Your V Avatar">
+                <div>
+                    <button id="download-avatar" class="cyber-btn">DOWNLOAD</button>
+                    <button id="add-to-gallery" class="cyber-btn">ADD TO GALLERY</button>
+                </div>
             </div>
         </div>
 
@@ -1101,6 +1293,139 @@
                 setTimeout(() => {
                     this.style.transition = 'all 0.5s ease';
                 }, 100);
+            });
+        });
+
+        // Mood Filter Functionality
+        const moodTags = {
+            'V Portrait': ['dark', 'gritty'],
+            'V Full Art': ['neon', 'futuristic'],
+            'Cyber Scene - Night City': ['neon', 'futuristic', 'chaotic'],
+            'Edgerunner': ['dark', 'chaotic', 'gritty'],
+            'Neon Art': ['neon', 'futuristic'],
+            'Night City': ['neon', 'futuristic'],
+            'V Art': ['dark', 'neon'],
+            '2077 Ride': ['futuristic', 'chaotic'],
+            'Neon Lights': ['neon'],
+            'V Neon': ['neon', 'futuristic'],
+            'Badlands': ['dark', 'gritty', 'serene'],
+            'Neon Poster': ['neon', 'futuristic'],
+            'Night City Vehicles': ['futuristic', 'chaotic'],
+            'Sick Rides': ['futuristic', 'chaotic'],
+            'Custom Rides': ['dark', 'gritty', 'futuristic']
+        };
+
+        // Add data-mood attributes to gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            const title = item.querySelector('h3').textContent;
+            if (moodTags[title]) {
+                item.setAttribute('data-moods', moodTags[title].join(','));
+            }
+        });
+
+        // Mood filter functionality
+        document.querySelectorAll('.mood-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const selectedMood = this.getAttribute('data-mood');
+
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    if (selectedMood === 'all') {
+                        item.style.display = 'block';
+                        return;
+                    }
+
+                    const itemMoods = item.getAttribute('data-moods');
+                    if (itemMoods && itemMoods.includes(selectedMood)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Avatar Generator Functionality
+        document.getElementById('generate-avatar').addEventListener('click', async function() {
+            const lifepath = document.getElementById('lifepath').value;
+            const gender = document.getElementById('gender').value;
+            const cyberware = Array.from(document.getElementById('cyberware').selectedOptions)
+                              .map(opt => opt.value)
+                              .join(', ');
+            const style = document.getElementById('style').value;
+
+            this.textContent = 'GENERATING...';
+            this.disabled = true;
+
+            // Build prompt for AI image generation
+            const prompt = `Cyberpunk 2077 style portrait of ${gender} character, ${lifepath} lifepath, ${style} style, ${cyberware} cyberware, neon lighting, ultra-detailed, cinematic, 4k, cyberpunk aesthetic, Night City background, glowing eyes, high-tech armor, dystopian future`;
+
+            try {
+                // For demo purposes, use a placeholder image
+                // In production, replace with actual API call to Replicate/Stable Diffusion
+                const demoImages = [
+                    'https://i.pinimg.com/originals/b7/9e/6b/b79e6bbcc064cbcec5e573394406a081.png',
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM8Flh-39ADr24ky0dJDZ_XsWuX5-_sA4ToxmJPkDy4Iy6BglT5H_40fl6&s=10',
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYJZLkHlnVseLaeGJrEPK5K_DiAAqnBOKXz_YBV4vDlseAMPkbUlSWeoZO&s=10'
+                ];
+                const randomImage = demoImages[Math.floor(Math.random() * demoImages.length)];
+                
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                document.getElementById('avatar-image').src = randomImage;
+                document.querySelector('.avatar-result').style.display = 'block';
+
+            } catch (error) {
+                alert('Error generating avatar: ' + error.message);
+            } finally {
+                this.textContent = 'GENERATE AVATAR';
+                this.disabled = false;
+            }
+        });
+
+        // Download button
+        document.getElementById('download-avatar').addEventListener('click', function() {
+            const img = document.getElementById('avatar-image');
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = 'my-v-avatar.png';
+            link.click();
+        });
+
+        // Add to gallery button
+        document.getElementById('add-to-gallery').addEventListener('click', function() {
+            const imgSrc = document.getElementById('avatar-image').src;
+            const gallery = document.querySelector('.gallery');
+
+            const newItem = document.createElement('div');
+            newItem.className = 'gallery-item';
+            newItem.innerHTML = `
+                <img src="${imgSrc}" alt="Custom V Avatar">
+                <h3>My V Avatar</h3>
+            `;
+
+            // Add mood tags to new item
+            newItem.setAttribute('data-moods', 'neon,futuristic,dark');
+
+            gallery.insertBefore(newItem, gallery.firstChild);
+
+            // Add click handler for modal
+            newItem.addEventListener('click', function() {
+                const title = this.querySelector('h3').textContent;
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-description').textContent = 'Your custom-generated V avatar!';
+                document.getElementById('image-modal').style.display = 'block';
+            });
+
+            // Add hover effects
+            newItem.addEventListener('mouseenter', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 10);
             });
         });
 
