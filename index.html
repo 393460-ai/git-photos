@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V'S NEON GALLERY | CYBERPUNK 2077</title>
+    <title>V'S CYBERPUNK 2077 GALLERY</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            --neon-yellow: #ffd700;
+            --neon-blue: #00ffff;
             --neon-pink: #ff2a6d;
-            --neon-blue: #05d9e8;
             --neon-purple: #d300c5;
-            --neon-yellow: #f9f002;
             --neon-green: #01ff70;
             --neon-orange: #ff6b35;
             --dark-bg: #0a040a;
@@ -43,10 +43,10 @@
             right: 0;
             bottom: 0;
             background: 
-                radial-gradient(ellipse at 25% 30%, rgba(255, 107, 53, 0.12) 0%, transparent 30%),
-                radial-gradient(ellipse at 75% 70%, rgba(255, 42, 109, 0.12) 0%, transparent 30%),
-                radial-gradient(ellipse at 50% 50%, rgba(5, 217, 232, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 42, 109, 0.05) 50%, rgba(5, 217, 232, 0.03) 100%);
+                radial-gradient(ellipse at 25% 30%, rgba(0, 255, 255, 0.12) 0%, transparent 30%),
+                radial-gradient(ellipse at 75% 70%, rgba(255, 215, 0, 0.12) 0%, transparent 30%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 215, 0, 0.05) 50%, rgba(0, 255, 255, 0.03) 100%);
             pointer-events: none;
             z-index: -1;
             animation: bg-pulse 20s ease infinite;
@@ -67,8 +67,8 @@
             bottom: 0;
             background: repeating-linear-gradient(
                 0deg,
-                rgba(5, 217, 232, 0.03) 0px,
-                rgba(5, 217, 232, 0.03) 1px,
+                rgba(0, 255, 255, 0.03) 0px,
+                rgba(0, 255, 255, 0.03) 1px,
                 transparent 1px,
                 transparent 2px
             );
@@ -106,14 +106,14 @@
 
         .glitch::before {
             left: 3px;
-            text-shadow: -3px 0 var(--neon-yellow);
+            text-shadow: -3px 0 var(--neon-blue);
             clip: rect(44px, 450px, 56px, 0);
             animation: glitch-anim 4s infinite linear alternate-reverse;
         }
 
         .glitch::after {
             left: -3px;
-            text-shadow: 3px 0 var(--neon-pink);
+            text-shadow: 3px 0 var(--neon-yellow);
             clip: rect(44px, 450px, 56px, 0);
             animation: glitch-anim2 4s infinite linear alternate-reverse;
         }
@@ -197,12 +197,12 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 5rem;
             font-weight: 900;
-            color: var(--neon-yellow);
+            color: var(--neon-blue);
             text-shadow: 
-                0 0 10px var(--neon-yellow),
-                0 0 20px var(--neon-yellow),
-                0 0 30px var(--neon-orange),
-                0 0 40px var(--neon-orange);
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-yellow),
+                0 0 40px var(--neon-yellow);
             letter-spacing: 8px;
             margin-bottom: 10px;
             animation: neon-pulse 1.5s ease-in-out infinite alternate, color-shift 8s ease infinite, text-flicker 0.1s ease-in-out infinite;
@@ -229,16 +229,16 @@
         }
 
         @keyframes color-shift {
-            0%, 25% { color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-orange); }
-            26%, 50% { color: var(--neon-pink); text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-purple); }
-            51%, 75% { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-pink); }
-            76%, 100% { color: var(--neon-orange); text-shadow: 0 0 20px var(--neon-orange), 0 0 40px var(--neon-yellow); }
+            0%, 25% { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-yellow); }
+            26%, 50% { color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-blue); }
+            51%, 75% { color: var(--neon-blue); text-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-yellow); }
+            76%, 100% { color: var(--neon-yellow); text-shadow: 0 0 20px var(--neon-yellow), 0 0 40px var(--neon-blue); }
         }
 
         .tagline {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.3rem;
-            color: var(--neon-blue);
+            color: var(--neon-yellow);
             letter-spacing: 5px;
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -246,8 +246,8 @@
         }
 
         @keyframes tagline-glow {
-            from { text-shadow: 0 0 5px var(--neon-blue); }
-            to { text-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-blue); }
+            from { text-shadow: 0 0 5px var(--neon-yellow); }
+            to { text-shadow: 0 0 15px var(--neon-yellow), 0 0 25px var(--neon-yellow); }
         }
 
         @keyframes flicker {
@@ -267,16 +267,16 @@
             backdrop-filter: blur(20px);
             padding: 15px 20px;
             box-shadow: 
-                0 0 30px rgba(255, 107, 53, 0.3),
-                inset 0 0 30px rgba(255, 42, 109, 0.1);
+                0 0 30px rgba(0, 255, 255, 0.3),
+                inset 0 0 30px rgba(255, 215, 0, 0.1);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 255, 0.3);
             animation: nav-pulse 4s ease-in-out infinite;
         }
 
         @keyframes nav-pulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.3), inset 0 0 30px rgba(255, 42, 109, 0.1); }
-            50% { box-shadow: 0 0 40px rgba(255, 107, 53, 0.5), inset 0 0 40px rgba(255, 42, 109, 0.2); }
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 30px rgba(255, 215, 0, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.5), inset 0 0 40px rgba(255, 215, 0, 0.2); }
         }
 
         nav ul {
@@ -301,7 +301,7 @@
             border: 1px solid transparent;
             transition: all 0.3s ease;
             position: relative;
-            background: rgba(255, 107, 53, 0.05);
+            background: rgba(0, 255, 255, 0.05);
             animation: nav-link-flicker 5s ease-in-out infinite;
         }
 
@@ -317,7 +317,7 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink));
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-yellow));
             transition: all 0.3s ease;
             transform: translateX(-50%);
             animation: underline-pulse 2s ease-in-out infinite;
@@ -329,15 +329,15 @@
         }
 
         nav a:hover {
-            color: var(--neon-yellow);
-            text-shadow: 0 0 15px var(--neon-yellow);
-            border-color: var(--neon-orange);
-            background: rgba(255, 107, 53, 0.1);
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+            border-color: var(--neon-yellow);
+            background: rgba(0, 255, 255, 0.1);
         }
 
         nav a:hover::before {
             width: 100%;
-            box-shadow: 0 0 15px var(--neon-orange);
+            box-shadow: 0 0 15px var(--neon-yellow);
         }
 
         nav a:hover::after {
@@ -347,15 +347,15 @@
             left: 2px;
             right: -2px;
             bottom: -2px;
-            border: 1px solid var(--neon-pink);
+            border: 1px solid var(--neon-yellow);
             border-radius: 2px;
             animation: border-flicker 0.2s infinite, border-glow 1s ease-in-out infinite;
             z-index: -1;
         }
 
         @keyframes border-glow {
-            0%, 100% { box-shadow: 0 0 5px var(--neon-pink); }
-            50% { box-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink); }
+            0%, 100% { box-shadow: 0 0 5px var(--neon-yellow); }
+            50% { box-shadow: 0 0 15px var(--neon-yellow), 0 0 25px var(--neon-yellow); }
         }
 
         @keyframes border-flicker {
@@ -366,13 +366,13 @@
         h1 {
             text-align: center;
             margin: 40px 0 30px;
-            color: var(--neon-orange);
+            color: var(--neon-blue);
             font-family: 'Orbitron', sans-serif;
             font-size: 2.8rem;
             text-shadow: 
-                0 0 10px var(--neon-orange),
-                0 0 20px var(--neon-orange),
-                0 0 30px var(--neon-pink);
+                0 0 10px var(--neon-blue),
+                0 0 20px var(--neon-blue),
+                0 0 30px var(--neon-yellow);
             letter-spacing: 5px;
             animation: title-glow 3s ease-in-out infinite, title-pulse 2s ease-in-out infinite;
         }
@@ -384,10 +384,10 @@
 
         @keyframes title-glow {
             0%, 100% { 
-                text-shadow: 0 0 10px var(--neon-orange), 0 0 20px var(--neon-orange), 0 0 30px var(--neon-pink);
+                text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-yellow);
             }
             50% { 
-                text-shadow: 0 0 15px var(--neon-orange), 0 0 30px var(--neon-orange), 0 0 45px var(--neon-pink);
+                text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue), 0 0 45px var(--neon-yellow);
             }
         }
 
@@ -409,10 +409,10 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 
-                0 0 20px rgba(255, 107, 53, 0.15),
-                inset 0 0 20px rgba(255, 42, 109, 0.05);
+                0 0 20px rgba(0, 255, 255, 0.15),
+                inset 0 0 20px rgba(255, 215, 0, 0.05);
             transition: all 0.5s ease;
-            border: 1px solid rgba(255, 107, 53, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             position: relative;
             animation: card-float 6s ease-in-out infinite, card-glow 4s ease-in-out infinite;
         }
@@ -423,8 +423,8 @@
         }
 
         @keyframes card-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 53, 0.15), inset 0 0 20px rgba(255, 42, 109, 0.05); }
-            50% { box-shadow: 0 0 30px rgba(255, 107, 53, 0.25), inset 0 0 30px rgba(255, 42, 109, 0.1); }
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.15), inset 0 0 20px rgba(255, 215, 0, 0.05); }
+            50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.25), inset 0 0 30px rgba(255, 215, 0, 0.1); }
         }
 
         .gallery-item::before {
@@ -434,7 +434,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink), var(--neon-blue), var(--neon-purple));
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-yellow));
             background-size: 400% 400%;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -449,10 +449,10 @@
         .gallery-item:hover {
             transform: translateY(-12px) scale(1.03) !important;
             box-shadow: 
-                0 20px 50px rgba(255, 107, 53, 0.4),
-                0 0 50px rgba(255, 42, 109, 0.3),
-                inset 0 0 30px rgba(255, 42, 109, 0.1) !important;
-            border-color: var(--neon-orange);
+                0 20px 50px rgba(0, 255, 255, 0.4),
+                0 0 50px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(255, 215, 0, 0.1) !important;
+            border-color: var(--neon-blue);
         }
 
         .gallery-item:hover::before {
@@ -490,7 +490,7 @@
             padding: 18px;
             text-align: center;
             font-size: 1.2rem;
-            color: var(--neon-blue);
+            color: var(--neon-yellow);
             font-family: 'Orbitron', sans-serif;
             font-weight: 500;
             letter-spacing: 2px;
@@ -502,8 +502,8 @@
         }
 
         @keyframes text-glow {
-            0%, 100% { color: var(--neon-blue); text-shadow: none; }
-            50% { color: var(--neon-yellow); text-shadow: 0 0 5px var(--neon-yellow); }
+            0%, 100% { color: var(--neon-yellow); text-shadow: none; }
+            50% { color: var(--neon-blue); text-shadow: 0 0 5px var(--neon-blue); }
         }
 
         .gallery-item h3::after {
@@ -513,7 +513,7 @@
             left: 50%;
             width: 60%;
             height: 3px;
-            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink));
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-yellow));
             transform: translateX(-50%);
             transition: all 0.3s ease;
             animation: underline-glow 2s ease-in-out infinite;
@@ -525,13 +525,13 @@
         }
 
         .gallery-item:hover h3 {
-            color: var(--neon-yellow);
-            text-shadow: 0 0 10px var(--neon-yellow);
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         .gallery-item:hover h3::after {
             width: 90%;
-            box-shadow: 0 0 15px var(--neon-orange);
+            box-shadow: 0 0 15px var(--neon-yellow);
         }
 
         /* Modal Styles */
@@ -557,11 +557,11 @@
             background: var(--card-bg);
             margin: 10% auto;
             padding: 40px;
-            border: 2px solid var(--neon-orange);
+            border: 2px solid var(--neon-blue);
             border-radius: 8px;
             width: 80%;
             max-width: 600px;
-            box-shadow: 0 0 50px var(--neon-orange);
+            box-shadow: 0 0 50px var(--neon-blue);
             position: relative;
             animation: modalSlideIn 0.3s ease;
             color: var(--text-primary);
@@ -578,14 +578,14 @@
             top: 15px;
             font-size: 35px;
             font-weight: bold;
-            color: var(--neon-pink);
+            color: var(--neon-yellow);
             cursor: pointer;
             transition: all 0.2s ease;
         }
 
         .close-btn:hover {
-            color: var(--neon-orange);
-            text-shadow: 0 0 10px var(--neon-orange);
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
         }
 
         #modal-title {
@@ -610,9 +610,9 @@
             background: var(--card-bg);
             border-radius: 8px;
             box-shadow: 
-                0 0 25px rgba(255, 107, 53, 0.15),
-                inset 0 0 25px rgba(255, 42, 109, 0.05);
-            border: 1px solid rgba(255, 107, 53, 0.2);
+                0 0 25px rgba(0, 255, 255, 0.15),
+                inset 0 0 25px rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
             animation: section-fade-in 1s ease-out;
@@ -630,7 +630,7 @@
             left: 0;
             width: 100%;
             height: 5px;
-            background: linear-gradient(90deg, var(--neon-orange), var(--neon-pink), var(--neon-blue), var(--neon-purple), var(--neon-yellow));
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-yellow));
             background-size: 400% 400%;
             animation: gradient 6s ease infinite, section-border-glow 3s ease-in-out infinite;
         }
@@ -647,11 +647,11 @@
         }
 
         .section h2 {
-            color: var(--neon-orange);
+            color: var(--neon-blue);
             font-family: 'Orbitron', sans-serif;
             font-size: 2.2rem;
             margin-bottom: 25px;
-            text-shadow: 0 0 15px var(--neon-orange);
+            text-shadow: 0 0 15px var(--neon-blue);
             letter-spacing: 4px;
             position: relative;
             padding-bottom: 15px;
@@ -659,8 +659,8 @@
         }
 
         @keyframes heading-pulse {
-            0%, 100% { text-shadow: 0 0 15px var(--neon-orange); }
-            50% { text-shadow: 0 0 25px var(--neon-orange), 0 0 35px var(--neon-pink); }
+            0%, 100% { text-shadow: 0 0 15px var(--neon-blue); }
+            50% { text-shadow: 0 0 25px var(--neon-blue), 0 0 35px var(--neon-yellow); }
         }
 
         .section h2::after {
@@ -670,14 +670,14 @@
             left: 0;
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
-            box-shadow: 0 0 15px var(--neon-pink);
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-yellow));
+            box-shadow: 0 0 15px var(--neon-blue);
             animation: heading-underline 3s ease-in-out infinite;
         }
 
         @keyframes heading-underline {
             0%, 100% { width: 80px; }
-            50% { width: 100px; box-shadow: 0 0 25px var(--neon-pink); }
+            50% { width: 100px; box-shadow: 0 0 25px var(--neon-blue); }
         }
 
         .section p {
@@ -705,26 +705,26 @@
 
         @keyframes scrollbar-track-pulse {
             0%, 100% { background: var(--darker-bg); }
-            50% { background: rgba(255, 107, 53, 0.1); }
+            50% { background: rgba(0, 255, 255, 0.1); }
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--neon-orange), var(--neon-pink));
+            background: linear-gradient(180deg, var(--neon-blue), var(--neon-yellow));
             border-radius: 6px;
             animation: scrollbar-glow 2s ease-in-out infinite;
         }
 
         @keyframes scrollbar-glow {
-            0%, 100% { box-shadow: 0 0 5px var(--neon-orange); }
-            50% { box-shadow: 0 0 15px var(--neon-orange), 0 0 25px var(--neon-pink); }
+            0%, 100% { box-shadow: 0 0 5px var(--neon-blue); }
+            50% { box-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-yellow); }
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--neon-pink), var(--neon-orange));
-            box-shadow: 0 0 20px var(--neon-pink);
+            background: linear-gradient(180deg, var(--neon-yellow), var(--neon-blue));
+            box-shadow: 0 0 20px var(--neon-yellow);
         }
 
-        /* Floating particles effect - Orange and Pink */
+        /* Floating particles effect - Blue and Yellow */
         .particles {
             position: fixed;
             top: 0;
@@ -740,7 +740,7 @@
             position: absolute;
             width: 6px;
             height: 6px;
-            background: var(--neon-orange);
+            background: var(--neon-blue);
             border-radius: 50%;
             opacity: 0.6;
             animation: float 20s infinite ease-in-out, particle-pulse 3s ease-in-out infinite;
@@ -778,9 +778,9 @@
             pointer-events: none;
             z-index: -2;
             background-image: 
-                radial-gradient(circle at 20% 20%, rgba(255, 107, 53, 0.03) 0%, transparent 10%),
-                radial-gradient(circle at 80% 80%, rgba(255, 42, 109, 0.03) 0%, transparent 10%),
-                radial-gradient(circle at 50% 50%, rgba(5, 217, 232, 0.02) 0%, transparent 15%);
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.03) 0%, transparent 10%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.03) 0%, transparent 10%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.02) 0%, transparent 15%);
             animation: pattern-rotate 60s linear infinite;
         }
 
@@ -804,7 +804,7 @@
         .neon-line {
             position: absolute;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-pink), transparent);
+            background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-yellow), transparent);
             animation: line-move 10s linear infinite;
         }
 
@@ -821,7 +821,7 @@
             margin: 20px 0;
             border-radius: 8px;
             border: 1px solid var(--neon-blue);
-            box-shadow: 0 0 20px rgba(5, 217, 232, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
             position: sticky;
             top: 80px;
             z-index: 999;
@@ -835,9 +835,9 @@
         }
 
         .mood-btn {
-            background: rgba(255, 42, 109, 0.2);
-            color: var(--neon-pink);
-            border: 1px solid var(--neon-pink);
+            background: rgba(0, 255, 255, 0.2);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
             padding: 10px 20px;
             font-family: 'Orbitron', sans-serif;
             font-size: 0.8rem;
@@ -849,9 +849,9 @@
         }
 
         .mood-btn:hover, .mood-btn.active {
-            background: linear-gradient(135deg, var(--neon-pink), var(--neon-orange));
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-yellow));
             color: var(--dark-bg);
-            box-shadow: 0 0 15px var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-blue);
             border-color: transparent;
         }
 
@@ -873,7 +873,7 @@
 
         .form-group label {
             display: block;
-            color: var(--neon-orange);
+            color: var(--neon-yellow);
             font-family: 'Orbitron', sans-serif;
             font-size: 0.9rem;
             margin-bottom: 8px;
@@ -884,7 +884,7 @@
             width: 100%;
             padding: 12px;
             background: rgba(10, 4, 10, 0.8);
-            border: 1px solid var(--neon-pink);
+            border: 1px solid var(--neon-blue);
             color: var(--text-primary);
             font-family: 'Rajdhani', sans-serif;
             border-radius: 4px;
@@ -894,12 +894,12 @@
 
         .form-group select:focus {
             outline: none;
-            border-color: var(--neon-orange);
-            box-shadow: 0 0 10px var(--neon-orange);
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 10px var(--neon-yellow);
         }
 
         .cyber-btn {
-            background: linear-gradient(135deg, var(--neon-pink), var(--neon-orange));
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-yellow));
             color: var(--dark-bg);
             border: none;
             padding: 14px 30px;
@@ -912,13 +912,13 @@
             transition: all 0.3s ease;
             margin: 10px;
             text-transform: uppercase;
-            box-shadow: 0 0 15px var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-blue);
         }
 
         .cyber-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 25px var(--neon-orange), 0 0 35px var(--neon-pink);
-            background: linear-gradient(135deg, var(--neon-orange), var(--neon-pink));
+            box-shadow: 0 0 25px var(--neon-yellow), 0 0 35px var(--neon-blue);
+            background: linear-gradient(135deg, var(--neon-yellow), var(--neon-blue));
         }
 
         .avatar-result {
@@ -934,8 +934,8 @@
         #avatar-image {
             max-width: 300px;
             border-radius: 8px;
-            box-shadow: 0 0 30px var(--neon-orange);
-            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 30px var(--neon-blue);
+            border: 2px solid var(--neon-yellow);
             animation: avatar-glow 2s ease-in-out infinite;
         }
 
@@ -943,7 +943,7 @@
             margin: 20px 0;
             padding: 15px;
             background: rgba(10, 4, 10, 0.8);
-            border: 1px solid var(--neon-purple);
+            border: 1px solid var(--neon-yellow);
             border-radius: 8px;
             color: var(--text-primary);
             font-family: 'Rajdhani', sans-serif;
@@ -953,12 +953,12 @@
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
-            box-shadow: 0 0 15px rgba(211, 0, 197, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
 
         @keyframes avatar-glow {
-            0%, 100% { box-shadow: 0 0 30px var(--neon-orange); }
-            50% { box-shadow: 0 0 50px var(--neon-pink), 0 0 70px var(--neon-orange); }
+            0%, 100% { box-shadow: 0 0 30px var(--neon-blue); }
+            50% { box-shadow: 0 0 50px var(--neon-yellow), 0 0 70px var(--neon-blue); }
         }
 
         /* Responsive */
@@ -1062,7 +1062,7 @@
     </div>
 
     <div class="container" id="top">
-        <h1>NEON DREAMS</h1>
+        <h1>CYBERPUNK 2077</h1>
         
         <div class="gallery" id="gallery">
             <div class="gallery-item">
@@ -1222,8 +1222,8 @@
             particle.style.animationDelay = Math.random() * 20 + 's';
             particle.style.animationDuration = (15 + Math.random() * 10) + 's';
             
-            // V theme colors: Orange and Pink
-            const colors = ['#ff6b35', '#ff2a6d', '#ff2a6d', '#ff6b35', '#ff2a6d', '#05d9e8', '#d300c5'];
+            // V theme colors: Blue and Yellow
+            const colors = ['#00ffff', '#ffd700', '#ffd700', '#00ffff', '#ffd700', '#00ffff', '#d300c5'];
             particle.style.background = colors[Math.floor(Math.random() * colors.length)];
             
             // Random sizes
@@ -1706,7 +1706,7 @@
             flash.style.left = '0';
             flash.style.width = '100%';
             flash.style.height = '100%';
-            flash.style.background = `rgba(255, 107, 53, ${Math.random() * 0.05 + 0.02})`;
+            flash.style.background = `rgba(0, 255, 255, ${Math.random() * 0.05 + 0.02})`;
             flash.style.pointerEvents = 'none';
             flash.style.zIndex = '9998';
             flash.style.animation = 'flash-fade 0.5s ease-out';
