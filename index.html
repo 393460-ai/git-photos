@@ -1191,6 +1191,7 @@
                 <div>
                     <button id="download-avatar" class="cyber-btn">DOWNLOAD</button>
                     <button id="add-to-gallery" class="cyber-btn">ADD TO GALLERY</button>
+                    <button id="use-as-profile" class="cyber-btn">USE AS PROFILE</button>
                     <button id="regenerate-description" class="cyber-btn">NEW DESCRIPTION</button>
                 </div>
             </div>
@@ -1784,6 +1785,35 @@
                     this.style.animation = '';
                 }, 10);
             });
+        });
+
+        // Use as profile picture button - sets avatar at top of website
+        document.getElementById('use-as-profile').addEventListener('click', function() {
+            const imgSrc = document.getElementById('avatar-image').src;
+            const header = document.querySelector('header');
+            
+            // Create profile image element
+            const profileImg = document.createElement('img');
+            profileImg.src = imgSrc;
+            profileImg.style.position = 'absolute';
+            profileImg.style.top = '10px';
+            profileImg.style.right = '20px';
+            profileImg.style.width = '80px';
+            profileImg.style.height = '80px';
+            profileImg.style.borderRadius = '50%';
+            profileImg.style.border = '3px solid var(--neon-blue)';
+            profileImg.style.boxShadow = '0 0 20px var(--neon-blue)';
+            profileImg.style.zIndex = '100';
+            profileImg.id = 'profile-avatar';
+            
+            // Remove existing profile avatar if any
+            const existingProfile = document.getElementById('profile-avatar');
+            if (existingProfile) {
+                existingProfile.remove();
+            }
+            
+            // Add new profile avatar to header
+            header.appendChild(profileImg);
         });
 
         // Image descriptions data
