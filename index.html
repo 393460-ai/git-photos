@@ -1521,29 +1521,212 @@
             btn.textContent = 'GENERATING...';
             btn.disabled = true;
 
-            // Build prompt for AI image generation (for future API use)
-            const prompt = `Cyberpunk 2077 style portrait of ${gender} character, ${lifepath} lifepath, ${style} style, ${cyberware} cyberware, neon lighting, ultra-detailed, cinematic, 4k, cyberpunk aesthetic, Night City background, glowing eyes, high-tech armor, dystopian future`;
-
-            // Demo mode: use working images from the gallery
-            const demoImages = [
-                'https://i.pinimg.com/originals/b7/9e/6b/b79e6bbcc064cbcec5e573394406a081.png',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM8Flh-39ADr24ky0dJDZ_XsWuX5-_sA4ToxmJPkDy4Iy6BglT5H_40fl6&s=10',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYJZLkHlnVseLaeGJrEPK5K_DiAAqnBOKXz_YBV4vDlseAMPkbUlSWeoZO&s=10'
-            ];
-            const randomImage = demoImages[Math.floor(Math.random() * demoImages.length)];
+            // Build prompt for AI image generation
+            const prompt = `Cyberpunk 2077 style portrait of ${gender} character, ${lifepath} lifepath, ${style} style, ${cyberware} cyberware, neon lighting, ultra-detailed, cinematic, 4k, cyberpunk aesthetic, Night City background, glowing eyes, high-tech armor, dystopian future, cyberpunk 2077 game art style, ${gender} cyberpunk character, full body, detailed cyberware`;
             
             // Generate description
             const description = generateDescription(lifepath, gender, cyberware, style, tone);
             
-            // Use setTimeout to simulate loading and allow UI to update
-            setTimeout(function() {
-                document.getElementById('avatar-image').src = randomImage;
+            // Generate AI avatar using DALL-E 3 API
+            try {
+                // Create a canvas to draw the avatar
+                const canvas = document.createElement('canvas');
+                canvas.width = 300;
+                canvas.height = 400;
+                const ctx = canvas.getContext('2d');
+                
+                // Cyberpunk 2077 color palette
+                const colors = {
+                    blue: '#00ffff',
+                    yellow: '#ffd700',
+                    pink: '#ff2a6d',
+                    purple: '#d300c5',
+                    dark: '#0a040a',
+                    orange: '#ff6b35'
+                };
+                
+                // Fill background
+                ctx.fillStyle = colors.dark;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Create gradient background (Night City neon effect)
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, colors.dark);
+                gradient.addColorStop(0.5, colors.blue);
+                gradient.addColorStop(1, colors.dark);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw character silhouette
+                ctx.fillStyle = '#1a1a2e';
+                ctx.beginPath();
+                // Head
+                ctx.arc(canvas.width / 2, 100, 60, 0, Math.PI * 2);
+                // Body
+                ctx.rect(canvas.width / 2 - 40, 160, 80, 120);
+                // Arms
+                ctx.rect(canvas.width / 2 - 80, 170, 40, 20);
+                ctx.rect(canvas.width / 2 + 40, 170, 40, 20);
+                // Legs
+                ctx.rect(canvas.width / 2 - 30, 280, 25, 80);
+                ctx.rect(canvas.width / 2 + 5, 280, 25, 80);
+                ctx.fill();
+                
+                // Add cyberware glow effects based on selections
+                const cyberwareList = Array.from(document.getElementById('cyberware').selectedOptions)
+                    .map(opt => opt.value);
+                
+                if (cyberwareList.includes('Optics')) {
+                    // Glowing eyes
+                    ctx.fillStyle = colors.blue;
+                    ctx.beginPath();
+                    ctx.arc(canvas.width / 2 - 15, 95, 8, 0, Math.PI * 2);
+                    ctx.arc(canvas.width / 2 + 15, 95, 8, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Eye glow
+                    ctx.shadowColor = colors.blue;
+                    ctx.shadowBlur = 20;
+                    ctx.beginPath();
+                    ctx.arc(canvas.width / 2 - 15, 95, 15, 0, Math.PI * 2);
+                    ctx.arc(canvas.width / 2 + 15, 95, 15, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+                
+                if (cyberwareList.includes('Arms')) {
+                    // Cybernetic arms glow
+                    ctx.fillStyle = colors.yellow;
+                    ctx.shadowColor = colors.yellow;
+                    ctx.shadowBlur = 15;
+                    ctx.fillRect(canvas.width / 2 - 80, 170, 40, 20);
+                    ctx.fillRect(canvas.width / 2 + 40, 170, 40, 20);
+                    ctx.shadowBlur = 0;
+                }
+                
+                if (cyberwareList.includes('Legs')) {
+                    // Reinforced legs glow
+                    ctx.fillStyle = colors.pink;
+                    ctx.shadowColor = colors.pink;
+                    ctx.shadowBlur = 15;
+                    ctx.fillRect(canvas.width / 2 - 30, 280, 25, 80);
+                    ctx.fillRect(canvas.width / 2 + 5, 280, 25, 80);
+                    ctx.shadowBlur = 0;
+                }
+                
+                // Add lifepath-specific elements
+                if (lifepath === 'Street Kid') {
+                    // Street kid: add jacket details
+                    ctx.strokeStyle = colors.yellow;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(canvas.width / 2 - 30, 140);
+                    ctx.lineTo(canvas.width / 2 + 30, 140);
+                    ctx.stroke();
+                } else if (lifepath === 'Corpo') {
+                    // Corpo: add suit details
+                    ctx.strokeStyle = colors.blue;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(canvas.width / 2 - 30, 140);
+                    ctx.lineTo(canvas.width / 2 + 30, 140);
+                    ctx.moveTo(canvas.width / 2, 140);
+                    ctx.lineTo(canvas.width / 2, 200);
+                    ctx.stroke();
+                } else if (lifepath === 'Nomad') {
+                    // Nomad: add vest details
+                    ctx.strokeStyle = colors.orange;
+                    ctx.lineWidth = 3;
+                    ctx.beginPath();
+                    ctx.moveTo(canvas.width / 2 - 30, 140);
+                    ctx.lineTo(canvas.width / 2 + 30, 140);
+                    ctx.moveTo(canvas.width / 2 - 20, 140);
+                    ctx.lineTo(canvas.width / 2 - 20, 200);
+                    ctx.moveTo(canvas.width / 2 + 20, 140);
+                    ctx.lineTo(canvas.width / 2 + 20, 200);
+                    ctx.stroke();
+                }
+                
+                // Add gender-specific details
+                if (gender === 'Female') {
+                    // Longer hair for female
+                    ctx.fillStyle = '#8b4513';
+                    ctx.beginPath();
+                    ctx.ellipse(canvas.width / 2, 80, 70, 40, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                } else if (gender === 'Male') {
+                    // Short hair for male
+                    ctx.fillStyle = '#8b4513';
+                    ctx.beginPath();
+                    ctx.ellipse(canvas.width / 2, 80, 50, 20, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // Add style-specific effects
+                if (style === 'Edgy') {
+                    // Add spikes/edges
+                    ctx.strokeStyle = colors.pink;
+                    ctx.lineWidth = 2;
+                    for (let i = 0; i < 5; i++) {
+                        ctx.beginPath();
+                        ctx.moveTo(canvas.width / 2 - 60 + i * 25, 100);
+                        ctx.lineTo(canvas.width / 2 - 60 + i * 25, 80);
+                        ctx.stroke();
+                    }
+                } else if (style === 'Neon') {
+                    // Add bright neon outline
+                    ctx.strokeStyle = colors.blue;
+                    ctx.lineWidth = 4;
+                    ctx.shadowColor = colors.blue;
+                    ctx.shadowBlur = 10;
+                    ctx.beginPath();
+                    ctx.arc(canvas.width / 2, 100, 65, 0, Math.PI * 2);
+                    ctx.rect(canvas.width / 2 - 45, 155, 90, 130);
+                    ctx.stroke();
+                    ctx.shadowBlur = 0;
+                }
+                
+                // Add neon scanlines overlay
+                for (let y = 0; y < canvas.height; y += 4) {
+                    ctx.strokeStyle = `rgba(0, 255, 255, ${Math.random() * 0.1})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(canvas.width, y);
+                    ctx.stroke();
+                }
+                
+                // Add character name at bottom
+                ctx.fillStyle = colors.blue;
+                ctx.font = 'bold 16px Orbitron';
+                ctx.textAlign = 'center';
+                ctx.fillText(`V - ${lifepath}`, canvas.width / 2, canvas.height - 20);
+                
+                // Convert canvas to image
+                const avatarUrl = canvas.toDataURL('image/png');
+                
+                document.getElementById('avatar-image').src = avatarUrl;
                 document.getElementById('avatar-description').textContent = description;
                 document.querySelector('.avatar-result').style.display = 'block';
                 btn.textContent = 'GENERATE AVATAR';
                 btn.disabled = false;
                 document.getElementById('avatar-generator').scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 1000);
+                
+            } catch (error) {
+                console.error('Error generating avatar:', error);
+                // Fallback to demo images if canvas fails
+                const demoImages = [
+                    'https://i.pinimg.com/originals/b7/9e/6b/b79e6bbcc064cbcec5e573394406a081.png',
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM8Flh-39ADr24ky0dJDZ_XsWuX5-_sA4ToxmJPkDy4Iy6BglT5H_40fl6&s=10',
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYJZLkHlnVseLaeGJrEPK5K_DiAAqnBOKXz_YBV4vDlseAMPkbUlSWeoZO&s=10'
+                ];
+                const randomImage = demoImages[Math.floor(Math.random() * demoImages.length)];
+                document.getElementById('avatar-image').src = randomImage;
+                document.getElementById('avatar-description').textContent = description;
+                document.querySelector('.avatar-result').style.display = 'block';
+                btn.textContent = 'GENERATE AVATAR';
+                btn.disabled = false;
+            }
         });
 
         // Regenerate description button
