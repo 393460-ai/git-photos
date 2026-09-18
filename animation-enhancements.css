@@ -1,0 +1,92 @@
+/* Git-Photos animation expansion — layered on top of the existing cyberpunk theme */
+:root {
+  --motion-fast: 180ms;
+  --motion-medium: 420ms;
+  --motion-slow: 900ms;
+}
+
+html { scroll-behavior: smooth; }
+
+/* A subtle animated sheen gives panels a more tactile, holographic feel. */
+.section,
+.mood-filter-container,
+.profile-preview,
+.gallery-item,
+.modal-content {
+  isolation: isolate;
+}
+
+.section::after,
+.mood-filter-container::after,
+.profile-preview::after,
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.08) 45%, transparent 70%);
+  transform: translateX(-130%);
+  animation: panel-scan 9s ease-in-out infinite;
+}
+
+@keyframes panel-scan {
+  0%, 62% { transform: translateX(-130%); }
+  78%, 100% { transform: translateX(130%); }
+}
+
+/* Reveal cards as they enter the viewport. */
+.gallery-item,
+.section {
+  opacity: 0;
+  transform: translateY(22px) scale(.98);
+  animation: reveal-up 700ms cubic-bezier(.2,.8,.2,1) forwards, card-float 6s ease-in-out infinite 700ms, card-glow 4s ease-in-out infinite;
+}
+
+.gallery-item:nth-child(2n) { animation-delay: 100ms, 800ms, 0s; }
+.gallery-item:nth-child(3n) { animation-delay: 180ms, 880ms, 0s; }
+
+@keyframes reveal-up {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* More responsive hover depth without changing the existing layout. */
+.gallery-item,
+.section,
+.mood-btn,
+nav a,
+.close-btn,
+.preview-img {
+  will-change: transform;
+}
+
+.gallery-item:hover { transition: transform var(--motion-medium) cubic-bezier(.2,.8,.2,1), box-shadow var(--motion-medium) ease; }
+.mood-btn { position: relative; overflow: hidden; }
+.mood-btn::after,
+nav a::after {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  transition: transform 500ms ease;
+}
+.mood-btn:hover::after,
+nav a:hover::after { transform: translateX(120%); }
+
+/* Keyboard focus gets the same visual attention as mouse interaction. */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--neon-yellow);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 4px rgba(255,215,0,.18), 0 0 22px var(--neon-yellow);
+}
+
+/* Respect users who request less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
